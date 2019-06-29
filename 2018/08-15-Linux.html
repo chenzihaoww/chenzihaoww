@@ -1,0 +1,758 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+
+    <!--[if lt IE 9]>
+        <style>body {display: none; background: none !important} </style>
+        <meta http-equiv="Refresh" Content="0; url=//outdatedbrowser.com/" />
+    <![endif]-->
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="format-detection" content="telephone=no" />
+<meta name="author" content="梦在远方" />
+
+
+<meta name="description" content="Linux基础">
+<meta name="keywords" content="Linux">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Linux基础">
+<meta property="og:url" content="www.cesarz.com.cn/2018/08-15-Linux.html">
+<meta property="og:site_name" content="梦在远方">
+<meta property="og:description" content="Linux基础">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-11-05T14:26:08.643Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Linux基础">
+<meta name="twitter:description" content="Linux基础">
+
+<link rel="apple-touch-icon" href= "/apple-touch-icon.png">
+
+
+    <link rel="alternate" href="/atom.xml" title="梦在远方" type="application/atom+xml">
+
+
+
+    <link rel="shortcut icon" href="/img/favicon.png">
+
+
+
+    <link href="//cdn.bootcss.com/animate.css/3.5.1/animate.min.css" rel="stylesheet">
+
+
+
+    <link href="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet">
+
+
+
+    <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+    <link href="//cdn.bootcss.com/pace/1.0.2/themes/blue/pace-theme-minimal.css" rel="stylesheet">
+
+
+<link rel="stylesheet" href="/css/style.css">
+
+
+
+<link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+
+
+<title>Linux基础 | 梦在远方</title>
+
+<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+
+<script>
+    var yiliaConfig = {
+        fancybox: true,
+        animate: true,
+        isHome: false,
+        isPost: true,
+        isArchive: false,
+        isTag: false,
+        isCategory: false,
+        fancybox_js: "//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.js",
+        scrollreveal: "//cdn.bootcss.com/scrollReveal.js/3.1.4/scrollreveal.min.js",
+        search: true
+    }
+</script><!-- 百度推送 -->
+<script>(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();</script>
+
+
+    <script>
+        yiliaConfig.jquery_ui = [true, "//cdn.bootcss.com/jqueryui/1.10.4/jquery-ui.min.js", "//cdn.bootcss.com/jqueryui/1.10.4/css/jquery-ui.min.css"];
+    </script>
+
+
+
+    <script> yiliaConfig.rootUrl = "\/";</script>
+
+
+
+    <script src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5b08b02c0d38f252"></script>
+
+
+
+    <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "//hm.baidu.com/hm.js?a7947eca286f16b0c7ae6bedffabf6b1";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+
+</head>
+
+
+<script src="//cesarz.com.cn/js/playtour.js"></script>
+<script>
+  new tctip({
+    top: '5%',
+    button: {
+      id: 9,
+      type: 'zanzhu'
+    },
+    list: [
+      {
+       type: 'alipay',
+       qrImg: '//cesarz.com.cn/img/hongbao.png'
+     },
+      {
+        type: 'alipay',
+        qrImg: '//cesarz.com.cn/img/alipay.jpg'
+      },
+      {
+        type: 'wechat',
+        qrImg: '//cesarz.com.cn/img/wechat.jpg'
+      }
+    ]
+  }).init()
+</script>
+
+
+<body>
+
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+    <header id="header" class="inner">
+        <a href="/" class="profilepic">
+            <img src="/img/avatar.png" class="animated zoomIn">
+        </a>
+        <hgroup>
+          <h1 class="header-author"><a href="/">梦在远方</a></h1>
+          <div>
+
+              <span class=" icon-location-1"></span>
+              <span class="author-location">SuZhou, China</span>
+          </div>
+        </hgroup>
+<br>
+        
+
+        
+            <form id="search-form">
+            <input type="text" id="local-search-input" name="q" placeholder="search..." class="search form-control" autocomplete="off" autocorrect="off" searchonload="true" />
+            <i class="fa fa-times" onclick="resetSearch()"></i>
+            </form>
+            <div id="local-search-result"></div>
+            <p class='no-result'>No results found <i class='fa fa-spinner fa-pulse'></i></p>
+        
+
+
+        
+            <div id="switch-btn" class="switch-btn">
+                <div class="icon">
+                    <div class="icon-ctn">
+                        <div class="icon-wrap icon-house" data-idx="0">
+                            <div class="birdhouse"></div>
+                            <div class="birdhouse_holes"></div>
+                        </div>
+                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
+                            <div class="ribbon"></div>
+
+                        </div>
+                        
+                        <div class="icon-wrap icon-link hide" data-idx="2">
+                            <div class="loopback_l"></div>
+                            <div class="loopback_r"></div>
+                        </div>
+                        
+                        
+                        <div class="icon-wrap icon-me hide" data-idx="3">
+                            <div class="user"></div>
+                            <div class="shoulder"></div>
+                        </div>
+                        
+                    </div>
+
+                </div>
+                <div class="tips-box hide">
+                    <div class="tips-arrow"></div>
+                    <ul class="tips-inner">
+                        <li>菜单</li>
+                        <li>标签</li>
+                        
+                        <li>友情链接</li>
+                        
+                        
+                        <li>关于我</li>
+                        
+                    </ul>
+                </div>
+            </div>
+        
+
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                            <li><a href="/">主页</a></li>
+                        
+                            <li><a href="/archives/">所有文章</a></li>
+                        
+                            <li><a href="/tags/">标签云</a></li>
+                        
+                            <li><a href="/leave-message/">留言板</a></li>
+                        
+                            <li><a href="/about/">博客日志</a></li>
+                        
+                        </ul>
+                    </nav>
+                    <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" href="mailto:760391159@qq.com" title="Email"></a>
+                            
+                                <a class="fa CSDN" href="https://blog.csdn.net/qq_37867655" title="CSDN"></a>
+                            
+                                <a class="fa 网易云音乐" href="https://music.163.com/playlist?id=700838669&userid=469619340" title="网易云音乐"></a>
+                            
+                                <a class="fa QQ空间" href="https://user.qzone.qq.com/760391159" title="QQ空间"></a>
+                            
+                        </ul>
+                    </nav>
+                </section>
+
+                
+                <section class="switch-part switch-part2">
+                    <div class="widget tagcloud" id="js-tagcloud">
+                        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/CTF/">CTF</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CTF在线工具集/">CTF在线工具集</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Competition/">Competition</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HashPump/">HashPump</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/">Linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python-error-solution/">Python-error-solution</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/V-REP/">V-REP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/case/">case</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/c语言/">c语言</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/">hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/markdown/">markdown</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/matlab/">matlab</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mysql/">mysql</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/notebook/">notebook</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/npm/">npm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/online-website/">online-website</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/pycharm/">pycharm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/">python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/sql-injection/">sql-injection</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/sqlmap/">sqlmap</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ubuntu/">ubuntu</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/writeup/">writeup</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/微机/">微机</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/新生/">新生</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/概率论/">概率论</a></li></ul>
+                    </div>
+                </section>
+                
+
+                
+                <section class="switch-part switch-part3">
+                    <div id="js-friends">
+                    
+                      <a class="main-nav-link switch-friends-link" href="http://www.cesarz.com.cn/about/">关于本站</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="https://hexo.io">Hexo</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="https://pages.github.com/">GitHub</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="https://www.ichunqiu.com/">i春秋</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="https://tongji.baidu.com/web/welcome/login">百度统计</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="http://www.shiyanbar.com/">实验吧</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="https://cloud.tencent.com/?fromSource=gwzcw.234976.234976.234976">腾讯云</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="https://mail.126.com/index.htm?">网易126邮箱</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="https://www.bmob.cn/">boom后端云</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="http://www.cslg.cn/">CSLG</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="https://www.bootcdn.cn">Bootstrap</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="https://www.umeng.com/">友盟</a>
+                    
+                    </div>
+                </section>
+                
+
+                
+                
+                <section class="switch-part switch-part4">
+                
+                    <hr><div id="js-aboutme">格言：<div style="text-align:center;"><p>远方<br>是永远的期待<br>你的呼唤<br>就是我前行的号角</p></div>
+                  <hr><p>邮箱：760391159@qq.com</p></div>
+                </section>
+                
+            </div>
+        </div>
+    </header>
+</div>
+
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+      <div class="overlay">
+          <div class="slider-trigger"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="回到主页">梦在远方</a></h1>
+      </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/" class="profilepic">
+                <img src="/img/avatar.png" class="animated zoomIn">
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/" title="回到主页">梦在远方</a></h1>
+              <div align="center">
+                    <span class="icon-location-1"></span>
+                      <span class="author-location">SuZhou, China</span>
+              </div>
+            </hgroup>
+            
+            <!-- 
+                <form id="search-form" align="center">
+                <input type="text" id="local-search-input" name="q" placeholder="search..." class="search form-control" autocomplete="off" autocorrect="off" searchonload="true" />
+                <i class="fa fa-times" onclick="resetSearch()"></i>
+                </form>
+                <div id="local-search-result"></div>
+                <p class='no-result'>No results found <i class='fa fa-spinner fa-pulse'></i></p>
+             -->
+            <nav class="header-menu">
+                <ul>
+                
+                    <li><a href="/">主页</a></li>
+                
+                    <li><a href="/archives/">所有文章</a></li>
+                
+                    <li><a href="/tags/">标签云</a></li>
+                
+                    <li><a href="/leave-message/">留言板</a></li>
+                
+                    <li><a href="/about/">博客日志</a></li>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+            <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" target="_blank" href="mailto:760391159@qq.com" title="Email"></a>
+                            
+                                <a class="fa CSDN" target="_blank" href="https://blog.csdn.net/qq_37867655" title="CSDN"></a>
+                            
+                                <a class="fa 网易云音乐" target="_blank" href="https://music.163.com/playlist?id=700838669&userid=469619340" title="网易云音乐"></a>
+                            
+                                <a class="fa QQ空间" target="_blank" href="https://user.qzone.qq.com/760391159" title="QQ空间"></a>
+                            
+                        </ul>
+            </nav>
+        </header>
+    </div>
+    <link class="menu-list" tags="标签" friends="友情链接" about="关于我"/>
+</nav>
+
+      <div class="body-wrap"><article id="post-Linux" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2018/08-15-Linux.html" class="article-date">
+      <time datetime="2018-08-15T00:57:18.000Z" itemprop="datePublished">2018-08-15</time>
+</a>
+
+
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Linux基础
+    </h1>
+  
+
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/Document/">Document</a>
+    </div>
+
+
+        
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/">Linux</a></li></ul>
+    </div>
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <h1 id="Linux的基本概念"><a href="#Linux的基本概念" class="headerlink" title="Linux的基本概念"></a>Linux的基本概念</h1><h1 id="Linux的目录结构"><a href="#Linux的目录结构" class="headerlink" title="Linux的目录结构"></a>Linux的目录结构</h1><h1 id="Linux常用命令"><a href="#Linux常用命令" class="headerlink" title="Linux常用命令"></a>Linux常用命令</h1><h2 id="基础命令"><a href="#基础命令" class="headerlink" title="基础命令"></a>基础命令</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">ls                  用来显示目标列表</span><br><span class="line"><span class="built_in">cd</span> [path]           用来切换工作目录</span><br><span class="line"><span class="built_in">pwd</span>                 以绝对路径的方式显示用户当前工作目录</span><br><span class="line">man [<span class="built_in">command</span>]       查看Linux中的指令帮助、配置文件帮助和编程帮助等信息</span><br><span class="line">apropos [whatever]  在一些特定的包含系统命令的简短描述的数据库文件里查找关键字</span><br><span class="line"><span class="built_in">echo</span> [string]       打印一行文本，参数“-e”可激活转义字符</span><br><span class="line">cat [file]          连接文件并打印到标准输出设备上</span><br><span class="line">less [file]         允许用户向前或向后浏览文字档案的内容</span><br><span class="line">mv [file1] [file2]  用来对文件或目录重新命名，或者将文件从一个目录移到另一个目录中</span><br><span class="line">cp [file1] [file2]  用来将一个或多个源文件或者目录复制到指定的目的文件或目录</span><br><span class="line">rm [file]           可以删除一个目录中的一个或多个文件或目录，也可以将某个目录及其下属的所有文件及其子目录均删除掉</span><br><span class="line">ps                  用于报告当前系统的进程状态</span><br><span class="line">top                 实时查看系统的整体运行情况</span><br><span class="line"><span class="built_in">kill</span>                杀死一个进程</span><br><span class="line">ifconfig            查看或设置网络设备</span><br><span class="line">ping                查看网络上的主机是否工作</span><br><span class="line">netstat             显示网络连接、路由表和网络接口信息</span><br><span class="line">nc(netcat)          建立</span><br><span class="line">TCP 和 UDP 连接并监听</span><br><span class="line">su                  切换当前用户身份到其他用户身份</span><br><span class="line">touch [file]        创建新的空文件</span><br><span class="line">mkdir [dir]         创建目录</span><br><span class="line">chmod               变更文件或目录的权限</span><br><span class="line">chown               变更某个文件或目录的所有者和所属组</span><br><span class="line">nano / vim / emacs  字符终端的文本编辑器</span><br><span class="line"><span class="built_in">exit</span>                退出</span><br><span class="line">shell</span><br><span class="line">管道命令符 <span class="string">"|"</span>       将一个命令的标准输出作为另一个命令的标准输入</span><br></pre></td></tr></table></figure>
+<h2 id="解压缩命令"><a href="#解压缩命令" class="headerlink" title="解压缩命令"></a>解压缩命令</h2><p>linux下最常用的打包程序就是tar了，使用tar程序打出来的包我们常称为tar包，tar包文件的命令通常都是以.tar结尾的。生成tar包后，就可以用其它的程序来进行压缩。</p>
+<h3 id="1．命令格式："><a href="#1．命令格式：" class="headerlink" title="1．命令格式："></a>1．命令格式：</h3><p>tar[必要参数][选择参数][文件]</p>
+<h3 id="2．命令功能："><a href="#2．命令功能：" class="headerlink" title="2．命令功能："></a>2．命令功能：</h3><p>用来压缩和解压文件。tar本身不具有压缩功能。他是调用压缩功能实现的</p>
+<h3 id="3．命令参数："><a href="#3．命令参数：" class="headerlink" title="3．命令参数："></a>3．命令参数：</h3><p>必要参数有如下：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">-A 新增压缩文件到已存在的压缩</span><br><span class="line">-B 设置区块大小</span><br><span class="line">-c 建立新的压缩文件</span><br><span class="line">-d 记录文件的差别</span><br><span class="line">-r 添加文件到已经压缩的文件</span><br><span class="line">-u 添加改变了和现有的文件到已经存在的压缩文件</span><br><span class="line">-x 从压缩的文件中提取文件</span><br><span class="line">-t 显示压缩文件的内容</span><br><span class="line">-z 支持gzip解压文件</span><br><span class="line">-j 支持bzip2解压文件</span><br><span class="line">-Z 支持compress解压文件</span><br><span class="line">-v 显示操作过程</span><br><span class="line">-l 文件系统边界设置</span><br><span class="line">-k 保留原有文件不覆盖</span><br><span class="line">-m 保留文件不被覆盖</span><br><span class="line">-W 确认压缩文件的正确性</span><br><span class="line">可选参数如下：</span><br><span class="line">-b 设置区块数目</span><br><span class="line">-C 切换到指定目录（是相对路径）</span><br><span class="line">-f 指定压缩文件</span><br><span class="line">--<span class="built_in">help</span> 显示帮助信息</span><br><span class="line">--version 显示版本信息</span><br></pre></td></tr></table></figure></p>
+<h3 id="4．常见解压-压缩命令"><a href="#4．常见解压-压缩命令" class="headerlink" title="4．常见解压/压缩命令"></a>4．常见解压/压缩命令</h3><p>tar<br>解包：tar xvf FileName.tar<br>打包：tar cvf FileName.tar DirName<br>（注：tar是打包，不是压缩！）<br>.gz<br>解压1：gunzip FileName.gz<br>解压2：gzip -d FileName.gz<br>压缩：gzip FileName<br>.tar.gz 和 .tgz<br>解压：tar zxvf FileName.tar.gz<br>压缩：tar zcvf FileName.tar.gz DirName<br>.bz2<br>解压1：bzip2 -d FileName.bz2<br>解压2：bunzip2 FileName.bz2<br>压缩： bzip2 -z FileName<br>.tar.bz2<br>解压：tar jxvf FileName.tar.bz2<br>压缩：tar jcvf FileName.tar.bz2 DirName<br>.bz<br>解压1：bzip2 -d FileName.bz<br>解压2：bunzip2 FileName.bz<br>压缩：未知<br>.tar.bz<br>解压：tar jxvf FileName.tar.bz<br>压缩：未知<br>.Z<br>解压：uncompress FileName.Z<br>压缩：compress FileName<br>.tar.Z<br>解压：tar Zxvf FileName.tar.Z<br>压缩：tar Zcvf FileName.tar.Z DirName<br>.zip<br>解压：unzip FileName.zip<br>压缩：zip FileName.zip DirName<br>.rar<br>解压：rar x FileName.rar<br>压缩：rar a FileName.rar DirName</p>
+<h3 id="5．使用实例"><a href="#5．使用实例" class="headerlink" title="5．使用实例"></a>5．使用实例</h3><p>实例1：将文件全部打包成tar包<br>命令：<br>tar -cvf log.tar log2012.log<br>tar -zcvf log.tar.gz log2012.log<br>tar -jcvf log.tar.bz2 log2012.log</p>
+<h2 id="使用变量"><a href="#使用变量" class="headerlink" title="使用变量"></a>使用变量</h2><pre><code>var=value         给变量var赋值value
+$var, ${var}      取变量的值
+`cmd`, $(cmd)     代换标准输出
+'string'          非替换字符串
+"string"          可替换字符串
+$ var="test";
+$ echo $var
+test
+$ echo 'This is a $var';
+This is a $var
+$ echo "This is a $var";
+This is a test
+$ echo `date`;
+2017年 11月 06日 星期一 14:40:07 CST
+$ $(bash)
+$ echo $0
+/bin/bash
+$ $($0)
+</code></pre>
+## Bash 快捷键
+<pre><code>Up(Down)          上（下）一条指令
+Ctrl + c          终止当前进程
+Ctrl + z          挂起当前进程，使用“fg”可唤醒
+Ctrl + d          删除光标处的字符
+Ctrl + l          清屏
+Ctrl + a          移动到命令行首
+Ctrl + e          移动到命令行尾
+Ctrl + b          按单词后移（向左）
+Ctrl + f          按单词前移（向右）
+Ctrl + Shift + c  复制
+Ctrl + Shift + v  粘贴
+</code></pre>
+
+
+<h1 id="Linux的文本编辑器"><a href="#Linux的文本编辑器" class="headerlink" title="Linux的文本编辑器"></a>Linux的文本编辑器</h1><p>#Linux系统的启动过程</p>
+<h2 id="进程管理"><a href="#进程管理" class="headerlink" title="进程管理"></a>进程管理</h2><h3 id="进程相关ID"><a href="#进程相关ID" class="headerlink" title="进程相关ID"></a>进程相关ID</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">user 用户名</span><br><span class="line">uid 用户号</span><br><span class="line">pid 进程号</span><br><span class="line">ppid 父进程号</span><br><span class="line">size 内存大小, Kbytes字节.</span><br><span class="line">vsize 总虚拟内存大小, bytes字节(包含code+data+stack)</span><br><span class="line">share 总共享页数</span><br><span class="line">nice 进程优先级(缺省为0, 最大为-20)</span><br><span class="line">priority(pri) 内核调度优先级</span><br><span class="line">pmem 进程分享的物理内存数的百分比</span><br><span class="line">trs 程序执行代码驻留大小</span><br><span class="line">rss 进程使用的总物理内存数, Kbytes字节</span><br><span class="line">time 进程执行起到现在总的CPU暂用时间</span><br><span class="line"><span class="built_in">stat</span> 进程状态</span><br><span class="line">cmd(args) 执行命令的简单格式</span><br></pre></td></tr></table></figure>
+<h3 id="进程操作"><a href="#进程操作" class="headerlink" title="进程操作"></a>进程操作</h3><p>命令后面加&amp;符号可以调入后台，fg [n]，从后台调入前台 ,bg从前台调入后台</p>
+<h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><h2 id="Linux-文档参考"><a href="#Linux-文档参考" class="headerlink" title="Linux 文档参考"></a>Linux 文档参考</h2><p><a href="http://tldp.org/LDP/Linux-Filesystem-Hierarchy/html/proc.html" target="_blank">Linux Filesystem Hierarchy</a></p>
+<h2 id="Linux和windows双系统默认项设置（亲测可用）"><a href="#Linux和windows双系统默认项设置（亲测可用）" class="headerlink" title="Linux和windows双系统默认项设置（亲测可用）"></a>Linux和windows双系统默认项设置（亲测可用）</h2><p><a href="https://jingyan.baidu.com/article/c1a3101e608595de656deb0e.html" target="_blank" rel="noopener">https://jingyan.baidu.com/article/c1a3101e608595de656deb0e.html</a></p>
+<p>##<br>附录：cona的简单使用</p>
+<p>conda create -n [name]     #创建名为name的conda环境，如tensorflow<br>1<br>source activate [name]     #激活刚才创建的环境，命令完成后，回答先命令行之前多了刚创建的环境的名字<br>1<br>source deactivate [name]    #退出名为name的环境，回到系统默认环境<br>1<br>conda remove -n [name] –all   #删除刚刚创建的conda环境<br>1<br>conda info -envs    #查看所安装环境列表，创建的环境都在<code>~/anaconda2/envs/</code>目录下面<br>1<br>conda list      #查看已经安装的包<br>1<br>conda install [packagename]        #安装具体的包，加-n [name]可以安装到指定环境<br>1<br>conda list -n [name]      #name环境下安装了哪些包<br>1<br>conda update -n [name] [packagename]     #升级name环境的名为packagename的包<br>1<br>conda remove -n [name] [packagename]     #删除name环境的名为packagename的包</p>
+
+      
+    </div>
+    
+  </div>
+  
+    
+    <div class="copyright">
+        <p><span>本文标题:</span><a href="/2018/08-15-Linux.html">Linux基础</a></p>
+        <p><span>文章作者:</span><a href="/" title="回到主页">梦在远方</a></p>
+        <p><span>发布时间:</span>2018-08-15, 08:57:18</p>
+        <p><span>最后更新:</span>2018-11-05, 22:26:08</p>
+        <p>
+            <span>原始链接:</span><a class="post-url" href="/2018/08-15-Linux.html" title="Linux基础">www.cesarz.com.cn/2018/08-15-Linux.html</a>
+            <span class="copy-path" data-clipboard-text="原文: www.cesarz.com.cn/2018/08-15-Linux.html　　作者: 梦在远方" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <script> var clipboard = new Clipboard('.copy-path'); </script>
+        </p>
+        <p>
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
+        </p>
+    </div>
+
+
+
+    <nav id="article-nav">
+        
+            <div id="article-nav-newer" class="article-nav-title">
+                <a href="/2018/08-15-python.html">
+                    python
+                </a>
+            </div>
+        
+        
+            <div id="article-nav-older" class="article-nav-title">
+                <a href="/2018/08-14-sqlmap.html">
+                    sqlmap用户手册及实战
+                </a>
+            </div>
+        
+    </nav>
+
+  
+</article>
+
+    <div id="toc" class="toc-article">
+        <strong class="toc-title">文章目录</strong>
+        
+            <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Linux的基本概念"><span class="toc-number">1.</span> <span class="toc-text">Linux的基本概念</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Linux的目录结构"><span class="toc-number">2.</span> <span class="toc-text">Linux的目录结构</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Linux常用命令"><span class="toc-number">3.</span> <span class="toc-text">Linux常用命令</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#基础命令"><span class="toc-number">3.1.</span> <span class="toc-text">基础命令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#解压缩命令"><span class="toc-number">3.2.</span> <span class="toc-text">解压缩命令</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1．命令格式："><span class="toc-number">3.2.1.</span> <span class="toc-text">1．命令格式：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2．命令功能："><span class="toc-number">3.2.2.</span> <span class="toc-text">2．命令功能：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3．命令参数："><span class="toc-number">3.2.3.</span> <span class="toc-text">3．命令参数：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4．常见解压-压缩命令"><span class="toc-number">3.2.4.</span> <span class="toc-text">4．常见解压/压缩命令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5．使用实例"><span class="toc-number">3.2.5.</span> <span class="toc-text">5．使用实例</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#使用变量"><span class="toc-number">3.3.</span> <span class="toc-text">使用变量</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Linux的文本编辑器"><span class="toc-number">4.</span> <span class="toc-text">Linux的文本编辑器</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#进程管理"><span class="toc-number">4.1.</span> <span class="toc-text">进程管理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#进程相关ID"><span class="toc-number">4.1.1.</span> <span class="toc-text">进程相关ID</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#进程操作"><span class="toc-number">4.1.2.</span> <span class="toc-text">进程操作</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#参考资料"><span class="toc-number">5.</span> <span class="toc-text">参考资料</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Linux-文档参考"><span class="toc-number">5.1.</span> <span class="toc-text">Linux 文档参考</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Linux和windows双系统默认项设置（亲测可用）"><span class="toc-number">5.2.</span> <span class="toc-text">Linux和windows双系统默认项设置（亲测可用）</span></a></li></ol></li></ol>
+        
+    </div>
+    <style>
+        .left-col .switch-btn,
+        .left-col .switch-area {
+            display: none;
+        }
+        .toc-level-6 i,
+        .toc-level-6 ol {
+            display: none !important;
+        }
+    </style>
+
+    <input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
+
+    <script>
+        yiliaConfig.toc = ["隐藏目录", "显示目录", !!"true"];
+    </script>
+
+
+
+    
+<div class="share">
+    
+        <div class="bdsharebuttonbox">
+            <a href="#" class="fa fa-twitter bds_twi" data-cmd="twi" title="分享到推特"></a>
+            <a href="#" class="fa fa-weibo bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+            <a href="#" class="fa fa-qq bds_sqq" data-cmd="sqq" title="分享给 QQ 好友"></a>
+            <a href="#" class="fa fa-files-o bds_copy" data-cmd="copy" title="复制网址"></a>
+            <a href="#" class="fa fa fa-envelope-o bds_mail" data-cmd="mail" title="通过邮件分享"></a>
+            <a href="#" class="fa fa-weixin bds_weixin" data-cmd="weixin" title="生成文章二维码"></a>
+            <a href="#" class="fa fa-share-alt bds_more" data-cmd="more"></i></a>
+        </div>
+        <script>
+            window._bd_share_config={
+                "common":{"bdSnsKey":{},"bdText":"Linux基础　| 梦在远方　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+        </script>
+    
+
+    
+        <div class="addthis_sharing_toolbox"></div>
+    
+</div>
+
+
+
+
+    
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/2018/08-15-python.html" title="上一篇: python">
+                <i class="fa icon-left-big"></i>
+            </a>
+        
+
+        <a title="文章列表"><i class="fa icon-th-large"></i><i class="fa icon-right-big"></i></a>
+
+        
+            <a href="/2018/08-14-sqlmap.html" title="下一篇: sqlmap用户手册及实战">
+                <i class="fa icon-right-big"></i>
+            </a>
+        
+    </div>
+
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2019/06-29-npm-error-resolve.html">npm ERR! Unexpected end of JSON input while parsing near和npm ERR! code EINTEGRITY</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05-06-college-probability.html">概率论与数理统计习题答案(第二版) 范大茵 陈永华编</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05-04-Artificial-competition.html">人工智能&大数据相关比赛信息收集</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03-13-matlab-qus1.html">matlab使用sym出现警告提示</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/01-18-python-error-resolve.html">python3异常处理和断言assert使用小结</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/11-27-ubuntu-skills.html">ubuntu下技巧总结</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/10-24-cprogram1.html">根据输入的图的邻接矩阵A，判断此图的连通分量的个数</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/10-14-notebook.html">杂项</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/10-14-pycharm-error.html">安装完Pycharm，启动时碰到"failed to load jvm dll"的解决方案</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09-03-xinsheng.html">来自老学长的小小礼包</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/08-28-online-website.html">在线学习网站集合</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/08-28-CTF-writeup.html">CTF的各类比赛writeup合集</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/08-27-ctf-case.html">ctf案例集合</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/08-27-python-error.html">Python运行错误及解决方案汇总</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/08-25-decode-script.html">CTF常用python脚本</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/08-25-CTF-Tools-online.html">CTF Tools</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/08-16-HashPump.html">HashPump用户手册</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/08-15-python.html">python</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/08-15-Linux.html">Linux基础</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/08-14-sqlmap.html">sqlmap用户手册及实战</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/08-13-sql-injection.html">sql注入</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/08-12-CTF.html">CTF简介</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/06-29-college_weiji.html">微机复习习题部分计算解答</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/06-12-V-REP PRO.html">V-REP PRO机器人仿真系统有趣实例</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/06-05-python实现小猪佩奇.html">python实现小猪佩奇</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/06-03-mysql存储过程使用案例.html">mysql存储过程使用案例</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/05-28-c语言简单日历小程序.html">c语言简单日历小程序</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/05-25-markdown.html">markdown用户手册</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/05-20-HEXO-ALL.html">HEXO用户手册</a></li></ul>
+
+
+
+
+    <script>
+        
+    </script>
+
+
+<!--gitment 评论-->
+  <div class="comments" id="comments">
+
+	<!--汉化-->
+    <!-- <link rel="stylesheet" href="https://billts.site/extra_css/gitment.css"> -->
+    <link rel="stylesheet" href="/css/gitment.css">
+    <script src="/js/gitment.js"></script>
+	<!-- <script src="https://billts.site/js/gitment.js"></script> -->
+	<!--原型-->
+	<!--
+	<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
+	<script src="https://imsun.github.io/gitment/dist/gitment.browser.js" type="text/javascript"></script>
+	-->
+
+<div id="gitmentContainer" style="margin-bottom: -19px;"></div>
+
+  <style>
+    .gitment-container a {
+      border: none;
+    }
+    .comments {
+      margin: 60px 0 0;padding: 0 60px;
+    }
+  </style>
+  <script type="text/javascript">
+    var gitment = new Gitment({
+	  id: 'Wed Aug 15 2018 08:57:18 GMT+0800',
+	  title: 'Linux基础',
+	  owner: 'chenzihaoww',
+	  repo: 'chenzihaosay.github.io',
+	  oauth: {
+		client_id: '1c384ef9543948e154bf',
+		client_secret: '64318568889df6956c6dcfdc27030a57f588a46a',
+	  },
+    })
+    gitment.render('gitmentContainer')
+  </script>
+</div>
+
+    <script> loadComment(); </script>
+
+
+<!--gitment 评论 end-->
+
+
+</div>
+      <footer id="footer">
+    <div class="outer">
+      <div class="footer-left">
+                <!-- <i class="fa fa-copyright"></i>
+                2018-2019 梦在远方 -->
+                <i class="fa icon-heart-empty animated infinite pulse" style="color:red">Welcome!</i>
+            </div>
+            <div class="footer-right">
+                <!-- <a href="http://hexo.io/" target="_blank" title="快速、简洁且高效的博客框架">Hexo</a> -->
+                <!--Theme <a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" title="简而不减 Hexo 双栏博客主题  v">Yelee</a>
+                -->
+                2019©  <i class="fa icon-heart animated infinite pulse" style="color:red">梦在远方</i>
+            </div>
+        </div>
+        
+            <div class="visit">
+                
+                    <span id="busuanzi_container_site_pv" style='display:none'>
+                        <span id="site-visit" title="本站到访数"><i class="fa icon-user" aria-hidden="true"></i><span id="busuanzi_value_site_uv"></span>
+                        </span>
+                    </span>
+                
+                
+                
+            </div>
+        
+    </div>
+</footer>
+
+    </div>
+    
+    <script src="/js/GithubRepoWidget.js"></script>
+
+<script data-main="/js/main.js" src="//cdnjs.cloudflare.com/ajax/libs/require.js/2.3.5/require.min.js"></script>
+
+
+
+
+
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-121838755-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+
+    <script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script src="//cdn.bootcss.com/mathjax/2.6.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+<div class="scroll" id="scroll">
+    <a href="#" title="返回顶部"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments" onclick="load$hide();" title="查看评论"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer" title="转到底部"><i class="fa fa-arrow-down"></i></a>
+</div>
+
+<script>
+    // Open in New Window
+    
+        var oOpenInNew = {
+             github: ".github-widget a", 
+            
+             post: ".article-entry a[href], .copyright a[href]", 
+            
+            
+            
+            
+             miniArchives: "a.post-list-link", 
+            
+             friends: "#js-friends a", 
+             socail: ".social a" 
+        }
+        for (var x in oOpenInNew) {
+            $(oOpenInNew[x]).attr("target", "_blank");
+        }
+    
+</script>
+
+    <script>
+        var originTitle = document.title;
+        var titleTime;
+        document.addEventListener("visibilitychange", function() {
+            if (document.hidden) {
+                document.title = "欢迎再次访问" + originTitle;
+                clearTimeout(titleTime);
+            }
+            else {
+                document.title = "欢迎访问" + originTitle;
+                titleTime = setTimeout(function() {
+                    document.title = originTitle;
+                }, 2000);
+            }
+        })
+    </script>
+
+
+ <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  </div>
+
+</body>
+</html>

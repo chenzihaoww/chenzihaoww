@@ -1,0 +1,898 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+
+    <!--[if lt IE 9]>
+        <style>body {display: none; background: none !important} </style>
+        <meta http-equiv="Refresh" Content="0; url=//outdatedbrowser.com/" />
+    <![endif]-->
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="format-detection" content="telephone=no" />
+<meta name="author" content="梦在远方" />
+
+
+<meta name="description" content="sqlmap用户手册（命令）和实战。">
+<meta name="keywords" content="sqlmap">
+<meta property="og:type" content="article">
+<meta property="og:title" content="sqlmap用户手册及实战">
+<meta property="og:url" content="www.cesarz.com.cn/2018/08-14-sqlmap.html">
+<meta property="og:site_name" content="梦在远方">
+<meta property="og:description" content="sqlmap用户手册（命令）和实战。">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-08-24T01:13:09.719Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="sqlmap用户手册及实战">
+<meta name="twitter:description" content="sqlmap用户手册（命令）和实战。">
+
+<link rel="apple-touch-icon" href= "/apple-touch-icon.png">
+
+
+    <link rel="alternate" href="/atom.xml" title="梦在远方" type="application/atom+xml">
+
+
+
+    <link rel="shortcut icon" href="/img/favicon.png">
+
+
+
+    <link href="//cdn.bootcss.com/animate.css/3.5.1/animate.min.css" rel="stylesheet">
+
+
+
+    <link href="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet">
+
+
+
+    <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+    <link href="//cdn.bootcss.com/pace/1.0.2/themes/blue/pace-theme-minimal.css" rel="stylesheet">
+
+
+<link rel="stylesheet" href="/css/style.css">
+
+
+
+<link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+
+
+<title>sqlmap用户手册及实战 | 梦在远方</title>
+
+<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+
+<script>
+    var yiliaConfig = {
+        fancybox: true,
+        animate: true,
+        isHome: false,
+        isPost: true,
+        isArchive: false,
+        isTag: false,
+        isCategory: false,
+        fancybox_js: "//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.js",
+        scrollreveal: "//cdn.bootcss.com/scrollReveal.js/3.1.4/scrollreveal.min.js",
+        search: true
+    }
+</script><!-- 百度推送 -->
+<script>(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();</script>
+
+
+    <script>
+        yiliaConfig.jquery_ui = [true, "//cdn.bootcss.com/jqueryui/1.10.4/jquery-ui.min.js", "//cdn.bootcss.com/jqueryui/1.10.4/css/jquery-ui.min.css"];
+    </script>
+
+
+
+    <script> yiliaConfig.rootUrl = "\/";</script>
+
+
+
+    <script src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5b08b02c0d38f252"></script>
+
+
+
+    <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "//hm.baidu.com/hm.js?a7947eca286f16b0c7ae6bedffabf6b1";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+
+</head>
+
+
+<script src="//cesarz.com.cn/js/playtour.js"></script>
+<script>
+  new tctip({
+    top: '5%',
+    button: {
+      id: 9,
+      type: 'zanzhu'
+    },
+    list: [
+      {
+       type: 'alipay',
+       qrImg: '//cesarz.com.cn/img/hongbao.png'
+     },
+      {
+        type: 'alipay',
+        qrImg: '//cesarz.com.cn/img/alipay.jpg'
+      },
+      {
+        type: 'wechat',
+        qrImg: '//cesarz.com.cn/img/wechat.jpg'
+      }
+    ]
+  }).init()
+</script>
+
+
+<body>
+
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+    <header id="header" class="inner">
+        <a href="/" class="profilepic">
+            <img src="/img/avatar.png" class="animated zoomIn">
+        </a>
+        <hgroup>
+          <h1 class="header-author"><a href="/">梦在远方</a></h1>
+          <div>
+
+              <span class=" icon-location-1"></span>
+              <span class="author-location">SuZhou, China</span>
+          </div>
+        </hgroup>
+<br>
+        
+
+        
+            <form id="search-form">
+            <input type="text" id="local-search-input" name="q" placeholder="search..." class="search form-control" autocomplete="off" autocorrect="off" searchonload="true" />
+            <i class="fa fa-times" onclick="resetSearch()"></i>
+            </form>
+            <div id="local-search-result"></div>
+            <p class='no-result'>No results found <i class='fa fa-spinner fa-pulse'></i></p>
+        
+
+
+        
+            <div id="switch-btn" class="switch-btn">
+                <div class="icon">
+                    <div class="icon-ctn">
+                        <div class="icon-wrap icon-house" data-idx="0">
+                            <div class="birdhouse"></div>
+                            <div class="birdhouse_holes"></div>
+                        </div>
+                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
+                            <div class="ribbon"></div>
+
+                        </div>
+                        
+                        <div class="icon-wrap icon-link hide" data-idx="2">
+                            <div class="loopback_l"></div>
+                            <div class="loopback_r"></div>
+                        </div>
+                        
+                        
+                        <div class="icon-wrap icon-me hide" data-idx="3">
+                            <div class="user"></div>
+                            <div class="shoulder"></div>
+                        </div>
+                        
+                    </div>
+
+                </div>
+                <div class="tips-box hide">
+                    <div class="tips-arrow"></div>
+                    <ul class="tips-inner">
+                        <li>菜单</li>
+                        <li>标签</li>
+                        
+                        <li>友情链接</li>
+                        
+                        
+                        <li>关于我</li>
+                        
+                    </ul>
+                </div>
+            </div>
+        
+
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                            <li><a href="/">主页</a></li>
+                        
+                            <li><a href="/archives/">所有文章</a></li>
+                        
+                            <li><a href="/tags/">标签云</a></li>
+                        
+                            <li><a href="/leave-message/">留言板</a></li>
+                        
+                            <li><a href="/about/">博客日志</a></li>
+                        
+                        </ul>
+                    </nav>
+                    <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" href="mailto:760391159@qq.com" title="Email"></a>
+                            
+                                <a class="fa CSDN" href="https://blog.csdn.net/qq_37867655" title="CSDN"></a>
+                            
+                                <a class="fa 网易云音乐" href="https://music.163.com/playlist?id=700838669&userid=469619340" title="网易云音乐"></a>
+                            
+                                <a class="fa QQ空间" href="https://user.qzone.qq.com/760391159" title="QQ空间"></a>
+                            
+                        </ul>
+                    </nav>
+                </section>
+
+                
+                <section class="switch-part switch-part2">
+                    <div class="widget tagcloud" id="js-tagcloud">
+                        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/CTF/">CTF</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CTF在线工具集/">CTF在线工具集</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Competition/">Competition</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HashPump/">HashPump</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/">Linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python-error-solution/">Python-error-solution</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/V-REP/">V-REP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/case/">case</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/c语言/">c语言</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/">hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/markdown/">markdown</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/matlab/">matlab</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mysql/">mysql</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/notebook/">notebook</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/npm/">npm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/online-website/">online-website</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/pycharm/">pycharm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/">python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/sql-injection/">sql-injection</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/sqlmap/">sqlmap</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ubuntu/">ubuntu</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/writeup/">writeup</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/微机/">微机</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/新生/">新生</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/概率论/">概率论</a></li></ul>
+                    </div>
+                </section>
+                
+
+                
+                <section class="switch-part switch-part3">
+                    <div id="js-friends">
+                    
+                      <a class="main-nav-link switch-friends-link" href="http://www.cesarz.com.cn/about/">关于本站</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="https://hexo.io">Hexo</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="https://pages.github.com/">GitHub</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="https://www.ichunqiu.com/">i春秋</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="https://tongji.baidu.com/web/welcome/login">百度统计</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="http://www.shiyanbar.com/">实验吧</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="https://cloud.tencent.com/?fromSource=gwzcw.234976.234976.234976">腾讯云</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="https://mail.126.com/index.htm?">网易126邮箱</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="https://www.bmob.cn/">boom后端云</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="http://www.cslg.cn/">CSLG</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="https://www.bootcdn.cn">Bootstrap</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="https://www.umeng.com/">友盟</a>
+                    
+                    </div>
+                </section>
+                
+
+                
+                
+                <section class="switch-part switch-part4">
+                
+                    <hr><div id="js-aboutme">格言：<div style="text-align:center;"><p>远方<br>是永远的期待<br>你的呼唤<br>就是我前行的号角</p></div>
+                  <hr><p>邮箱：760391159@qq.com</p></div>
+                </section>
+                
+            </div>
+        </div>
+    </header>
+</div>
+
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+      <div class="overlay">
+          <div class="slider-trigger"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="回到主页">梦在远方</a></h1>
+      </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/" class="profilepic">
+                <img src="/img/avatar.png" class="animated zoomIn">
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/" title="回到主页">梦在远方</a></h1>
+              <div align="center">
+                    <span class="icon-location-1"></span>
+                      <span class="author-location">SuZhou, China</span>
+              </div>
+            </hgroup>
+            
+            <!-- 
+                <form id="search-form" align="center">
+                <input type="text" id="local-search-input" name="q" placeholder="search..." class="search form-control" autocomplete="off" autocorrect="off" searchonload="true" />
+                <i class="fa fa-times" onclick="resetSearch()"></i>
+                </form>
+                <div id="local-search-result"></div>
+                <p class='no-result'>No results found <i class='fa fa-spinner fa-pulse'></i></p>
+             -->
+            <nav class="header-menu">
+                <ul>
+                
+                    <li><a href="/">主页</a></li>
+                
+                    <li><a href="/archives/">所有文章</a></li>
+                
+                    <li><a href="/tags/">标签云</a></li>
+                
+                    <li><a href="/leave-message/">留言板</a></li>
+                
+                    <li><a href="/about/">博客日志</a></li>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+            <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" target="_blank" href="mailto:760391159@qq.com" title="Email"></a>
+                            
+                                <a class="fa CSDN" target="_blank" href="https://blog.csdn.net/qq_37867655" title="CSDN"></a>
+                            
+                                <a class="fa 网易云音乐" target="_blank" href="https://music.163.com/playlist?id=700838669&userid=469619340" title="网易云音乐"></a>
+                            
+                                <a class="fa QQ空间" target="_blank" href="https://user.qzone.qq.com/760391159" title="QQ空间"></a>
+                            
+                        </ul>
+            </nav>
+        </header>
+    </div>
+    <link class="menu-list" tags="标签" friends="友情链接" about="关于我"/>
+</nav>
+
+      <div class="body-wrap"><article id="post-sqlmap" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2018/08-14-sqlmap.html" class="article-date">
+      <time datetime="2018-08-14T12:04:44.000Z" itemprop="datePublished">2018-08-14</time>
+</a>
+
+
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      sqlmap用户手册及实战
+    </h1>
+  
+
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/CTF/">CTF</a>
+    </div>
+
+
+        
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/sqlmap/">sqlmap</a></li></ul>
+    </div>
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <h1 id="sqlmap介绍"><a href="#sqlmap介绍" class="headerlink" title="sqlmap介绍"></a>sqlmap介绍</h1><p>sqlmap是一个开源的渗透测试工具，可以自动检测和利用SQL注入漏洞并接管数据库服务器。它配备了强大的检测引擎，为终极渗透测试仪提供了许多小众功能，以及从数据库指纹识别，从数据库获取数据到访问底层文件系统以及通过输出操作系统执行命令的各种开关。带连接。</p>
+<h1 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h1><p><pre><code>Usage: python sqlmap.py [options]</code></pre></p>
+<p>Options:<br>  -h, –help            Show basic help message and exit<br>  -hh                   Show advanced help message and exit<br>  –version             Show program’s version number and exit<br>  -v VERBOSE            Verbosity level: 0-6 (default 1)</p>
+<p>  Target:<br>    At least one of these options has to be provided to define the<br>    target(s)</p>
+<pre><code>-d DIRECT           Connection string for direct database connection
+-u URL, --url=URL   Target URL (e.g. &quot;http://www.site.com/vuln.php?id=1&quot;)
+-l LOGFILE          Parse target(s) from Burp or WebScarab proxy log file
+-x SITEMAPURL       Parse target(s) from remote sitemap(.xml) file
+-m BULKFILE         Scan multiple targets given in a textual file
+-r REQUESTFILE      Load HTTP request from a file
+-g GOOGLEDORK       Process Google dork results as target URLs
+-c CONFIGFILE       Load options from a configuration INI file
+</code></pre><p>  Request:<br>    These options can be used to specify how to connect to the target URL</p>
+<pre><code>--method=METHOD     Force usage of given HTTP method (e.g. PUT)
+--data=DATA         Data string to be sent through POST
+--param-del=PARA..  Character used for splitting parameter values
+--cookie=COOKIE     HTTP Cookie header value
+--cookie-del=COO..  Character used for splitting cookie values
+--load-cookies=L..  File containing cookies in Netscape/wget format
+--drop-set-cookie   Ignore Set-Cookie header from response
+--user-agent=AGENT  HTTP User-Agent header value
+--random-agent      Use randomly selected HTTP User-Agent header value
+--host=HOST         HTTP Host header value
+--referer=REFERER   HTTP Referer header value
+-H HEADER, --hea..  Extra header (e.g. &quot;X-Forwarded-For: 127.0.0.1&quot;)
+--headers=HEADERS   Extra headers (e.g. &quot;Accept-Language: fr\nETag: 123&quot;)
+--auth-type=AUTH..  HTTP authentication type (Basic, Digest, NTLM or PKI)
+--auth-cred=AUTH..  HTTP authentication credentials (name:password)
+--auth-file=AUTH..  HTTP authentication PEM cert/private key file
+--ignore-code=IG..  Ignore HTTP error code (e.g. 401)
+--ignore-proxy      Ignore system default proxy settings
+--ignore-redirects  Ignore redirection attempts
+--ignore-timeouts   Ignore connection timeouts
+--proxy=PROXY       Use a proxy to connect to the target URL
+--proxy-cred=PRO..  Proxy authentication credentials (name:password)
+--proxy-file=PRO..  Load proxy list from a file
+--tor               Use Tor anonymity network
+--tor-port=TORPORT  Set Tor proxy port other than default
+--tor-type=TORTYPE  Set Tor proxy type (HTTP, SOCKS4 or SOCKS5 (default))
+--check-tor         Check to see if Tor is used properly
+--delay=DELAY       Delay in seconds between each HTTP request
+--timeout=TIMEOUT   Seconds to wait before timeout connection (default 30)
+--retries=RETRIES   Retries when the connection timeouts (default 3)
+--randomize=RPARAM  Randomly change value for given parameter(s)
+--safe-url=SAFEURL  URL address to visit frequently during testing
+--safe-post=SAFE..  POST data to send to a safe URL
+--safe-req=SAFER..  Load safe HTTP request from a file
+--safe-freq=SAFE..  Test requests between two visits to a given safe URL
+--skip-urlencode    Skip URL encoding of payload data
+--csrf-token=CSR..  Parameter used to hold anti-CSRF token
+--csrf-url=CSRFURL  URL address to visit to extract anti-CSRF token
+--force-ssl         Force usage of SSL/HTTPS
+--hpp               Use HTTP parameter pollution method
+--eval=EVALCODE     Evaluate provided Python code before the request (e.g.
+                    &quot;import hashlib;id2=hashlib.md5(id).hexdigest()&quot;)
+</code></pre><p>  Optimization:<br>    These options can be used to optimize the performance of sqlmap</p>
+<pre><code>-o                  Turn on all optimization switches
+--predict-output    Predict common queries output
+--keep-alive        Use persistent HTTP(s) connections
+--null-connection   Retrieve page length without actual HTTP response body
+--threads=THREADS   Max number of concurrent HTTP(s) requests (default 1)
+</code></pre><p>  Injection:<br>    These options can be used to specify which parameters to test for,<br>    provide custom injection payloads and optional tampering scripts</p>
+<pre><code>-p TESTPARAMETER    Testable parameter(s)
+--skip=SKIP         Skip testing for given parameter(s)
+--skip-static       Skip testing parameters that not appear to be dynamic
+--param-exclude=..  Regexp to exclude parameters from testing (e.g. &quot;ses&quot;)
+--dbms=DBMS         Force back-end DBMS to this value
+--dbms-cred=DBMS..  DBMS authentication credentials (user:password)
+--os=OS             Force back-end DBMS operating system to this value
+--invalid-bignum    Use big numbers for invalidating values
+--invalid-logical   Use logical operations for invalidating values
+--invalid-string    Use random strings for invalidating values
+--no-cast           Turn off payload casting mechanism
+--no-escape         Turn off string escaping mechanism
+--prefix=PREFIX     Injection payload prefix string
+--suffix=SUFFIX     Injection payload suffix string
+--tamper=TAMPER     Use given script(s) for tampering injection data
+</code></pre><p>  Detection:<br>    These options can be used to customize the detection phase</p>
+<pre><code>--level=LEVEL       Level of tests to perform (1-5, default 1)
+--risk=RISK         Risk of tests to perform (1-3, default 1)
+--string=STRING     String to match when query is evaluated to True
+--not-string=NOT..  String to match when query is evaluated to False
+--regexp=REGEXP     Regexp to match when query is evaluated to True
+--code=CODE         HTTP code to match when query is evaluated to True
+--text-only         Compare pages based only on the textual content
+--titles            Compare pages based only on their titles
+</code></pre><p>  Techniques:<br>    These options can be used to tweak testing of specific SQL injection<br>    techniques</p>
+<pre><code>--technique=TECH    SQL injection techniques to use (default &quot;BEUSTQ&quot;)
+--time-sec=TIMESEC  Seconds to delay the DBMS response (default 5)
+--union-cols=UCOLS  Range of columns to test for UNION query SQL injection
+--union-char=UCHAR  Character to use for bruteforcing number of columns
+--union-from=UFROM  Table to use in FROM part of UNION query SQL injection
+--dns-domain=DNS..  Domain name used for DNS exfiltration attack
+--second-order=S..  Resulting page URL searched for second-order response
+</code></pre><p>  Fingerprint:<br>    -f, –fingerprint   Perform an extensive DBMS version fingerprint</p>
+<p>  Enumeration:<br>    These options can be used to enumerate the back-end database<br>    management system information, structure and data contained in the<br>    tables. Moreover you can run your own SQL statements</p>
+<pre><code>-a, --all           Retrieve everything
+-b, --banner        Retrieve DBMS banner
+--current-user      Retrieve DBMS current user
+--current-db        Retrieve DBMS current database
+--hostname          Retrieve DBMS server hostname
+--is-dba            Detect if the DBMS current user is DBA
+--users             Enumerate DBMS users
+--passwords         Enumerate DBMS users password hashes
+--privileges        Enumerate DBMS users privileges
+--roles             Enumerate DBMS users roles
+--dbs               Enumerate DBMS databases
+--tables            Enumerate DBMS database tables
+--columns           Enumerate DBMS database table columns
+--schema            Enumerate DBMS schema
+--count             Retrieve number of entries for table(s)
+--dump              Dump DBMS database table entries
+--dump-all          Dump all DBMS databases tables entries
+--search            Search column(s), table(s) and/or database name(s)
+--comments          Retrieve DBMS comments
+-D DB               DBMS database to enumerate
+-T TBL              DBMS database table(s) to enumerate
+-C COL              DBMS database table column(s) to enumerate
+-X EXCLUDECOL       DBMS database table column(s) to not enumerate
+-U USER             DBMS user to enumerate
+--exclude-sysdbs    Exclude DBMS system databases when enumerating tables
+--pivot-column=P..  Pivot column name
+--where=DUMPWHERE   Use WHERE condition while table dumping
+--start=LIMITSTART  First dump table entry to retrieve
+--stop=LIMITSTOP    Last dump table entry to retrieve
+--first=FIRSTCHAR   First query output word character to retrieve
+--last=LASTCHAR     Last query output word character to retrieve
+--sql-query=QUERY   SQL statement to be executed
+--sql-shell         Prompt for an interactive SQL shell
+--sql-file=SQLFILE  Execute SQL statements from given file(s)
+</code></pre><p>  Brute force:<br>    These options can be used to run brute force checks</p>
+<pre><code>--common-tables     Check existence of common tables
+--common-columns    Check existence of common columns
+</code></pre><p>  User-defined function injection:<br>    These options can be used to create custom user-defined functions</p>
+<pre><code>--udf-inject        Inject custom user-defined functions
+--shared-lib=SHLIB  Local path of the shared library
+</code></pre><p>  File system access:<br>    These options can be used to access the back-end database management<br>    system underlying file system</p>
+<pre><code>--file-read=RFILE   Read a file from the back-end DBMS file system
+--file-write=WFILE  Write a local file on the back-end DBMS file system
+--file-dest=DFILE   Back-end DBMS absolute filepath to write to
+</code></pre><p>  Operating system access:<br>    These options can be used to access the back-end database management<br>    system underlying operating system</p>
+<pre><code>--os-cmd=OSCMD      Execute an operating system command
+--os-shell          Prompt for an interactive operating system shell
+--os-pwn            Prompt for an OOB shell, Meterpreter or VNC
+--os-smbrelay       One click prompt for an OOB shell, Meterpreter or VNC
+--os-bof            Stored procedure buffer overflow exploitation
+--priv-esc          Database process user privilege escalation
+--msf-path=MSFPATH  Local path where Metasploit Framework is installed
+--tmp-path=TMPPATH  Remote absolute path of temporary files directory
+</code></pre><p>  Windows registry access:<br>    These options can be used to access the back-end database management<br>    system Windows registry</p>
+<pre><code>--reg-read          Read a Windows registry key value
+--reg-add           Write a Windows registry key value data
+--reg-del           Delete a Windows registry key value
+--reg-key=REGKEY    Windows registry key
+--reg-value=REGVAL  Windows registry key value
+--reg-data=REGDATA  Windows registry key value data
+--reg-type=REGTYPE  Windows registry key value type
+</code></pre><p>  General:<br>    These options can be used to set some general working parameters</p>
+<pre><code>-s SESSIONFILE      Load session from a stored (.sqlite) file
+-t TRAFFICFILE      Log all HTTP traffic into a textual file
+--batch             Never ask for user input, use the default behaviour
+--binary-fields=..  Result fields having binary values (e.g. &quot;digest&quot;)
+--check-internet    Check Internet connection before assessing the target
+--crawl=CRAWLDEPTH  Crawl the website starting from the target URL
+--crawl-exclude=..  Regexp to exclude pages from crawling (e.g. &quot;logout&quot;)
+--csv-del=CSVDEL    Delimiting character used in CSV output (default &quot;,&quot;)
+--charset=CHARSET   Blind SQL injection charset (e.g. &quot;0123456789abcdef&quot;)
+--dump-format=DU..  Format of dumped data (CSV (default), HTML or SQLITE)
+--encoding=ENCOD..  Character encoding used for data retrieval (e.g. GBK)
+--eta               Display for each output the estimated time of arrival
+--flush-session     Flush session files for current target
+--forms             Parse and test forms on target URL
+--fresh-queries     Ignore query results stored in session file
+--har=HARFILE       Log all HTTP traffic into a HAR file
+--hex               Use DBMS hex function(s) for data retrieval
+--output-dir=OUT..  Custom output directory path
+--parse-errors      Parse and display DBMS error messages from responses
+--save=SAVECONFIG   Save options to a configuration INI file
+--scope=SCOPE       Regexp to filter targets from provided proxy log
+--test-filter=TE..  Select tests by payloads and/or titles (e.g. ROW)
+--test-skip=TEST..  Skip tests by payloads and/or titles (e.g. BENCHMARK)
+--update            Update sqlmap
+</code></pre><p>  Miscellaneous:<br>    -z MNEMONICS        Use short mnemonics (e.g. “flu,bat,ban,tec=EU”)<br>    –alert=ALERT       Run host OS command(s) when SQL injection is found<br>    –answers=ANSWERS   Set question answers (e.g. “quit=N,follow=N”)<br>    –beep              Beep on question and/or when SQL injection is found<br>    –cleanup           Clean up the DBMS from sqlmap specific UDF and tables<br>    –dependencies      Check for missing (non-core) sqlmap dependencies<br>    –disable-coloring  Disable console output coloring<br>    –gpage=GOOGLEPAGE  Use Google dork results from specified page number<br>    –identify-waf      Make a thorough testing for a WAF/IPS/IDS protection<br>    –mobile            Imitate smartphone through HTTP User-Agent header<br>    –offline           Work in offline mode (only use session data)<br>    –purge-output      Safely remove all content from output directory<br>    –skip-waf          Skip heuristic detection of WAF/IPS/IDS protection<br>    –smart             Conduct thorough tests only if positive heuristic(s)<br>    –sqlmap-shell      Prompt for an interactive sqlmap shell<br>    –tmp-dir=TMPDIR    Local directory for storing temporary files<br>    –web-root=WEBROOT  Web server document root directory (e.g. “/var/www”)<br>    –wizard            Simple wizard interface for beginner users<br></p>
+<h1 id="Output-verbosity-输出冗长"><a href="#Output-verbosity-输出冗长" class="headerlink" title="Output verbosity(输出冗长)"></a>Output verbosity(输出冗长)</h1><p></p><p>选项: <code>-v</code></p><p></p>
+<p></p><p>此选项可用于设置输出消息的详细级别。存在 <strong>seven</strong> 级别的冗长。默认级别为<strong>1</strong> 其中显示信息，警告，错误，关键消息和Python回溯（如果发生）。</p><p></p>
+<p><ul><li><strong>0</strong>: 仅显示Python回溯，错误和关键消息。</li><li><strong>1</strong>: 还显示信息和警告消息。</li><li><strong>2</strong>: 显示调试消息。</li><li><strong>3</strong>: 显示注入的有效负载。</li><li><strong>4</strong>: 还显示HTTP请求。</li><li><strong>5</strong>: 还显示HTTP响应的标题。</li><li><strong>6</strong>: 还显示HTTP响应的页面内容。</li></ul></p>
+<p></p><p>一个合理的冗长程度，以进一步了解sqlmap在底层的作用是 <strong>2</strong>, 级，主要用于检测阶段和接管功能。而如果您想查看工具发送的SQL有效负载，则第<strong>3</strong>级是您的最佳选择。当您向开发人员提供潜在的错误报告时，也建议使用此级别，确保使用选项生成的流量日志文件与标准输出一起发送<code>-t</code>.。为了进一步调试潜在的错误或意外行为，我们建议您将详细程度设置为 <strong>4</strong>级或更高级别。应该注意的是，还可以通过使用此选项的较短版本来设置详细程度，其中字母数量 <code>v</code> 内的规定开关（而不是选择）确定的详细级别（例如<code>-v</code> ，而不是code&gt;-v 2, <code>-vv</code> 代替<code>-v 3</code>, <code>-vvv</code> 而不是<code>-v 4</code>, etc.)</p><p></p>
+<h1 id="tamper脚本分类说明"><a href="#tamper脚本分类说明" class="headerlink" title="tamper脚本分类说明"></a>tamper脚本分类说明</h1><div><table style="font-family:Arial;font-size:14px;border-collapse:collapse;"><tbody><tr><td class="et2" style="font-size:11pt;font-weight:700;text-align:center;vertical-align:bottom;width:77.25pt;">支持的数据库</td><td class="et3" style="font-size:11pt;font-weight:700;text-align:center;vertical-align:middle;width:48pt;">编号</td><td class="et3" style="font-size:11pt;font-weight:700;text-align:center;vertical-align:middle;width:166.5pt;">脚本名称</td><td class="et2" style="font-size:11pt;font-weight:700;text-align:center;vertical-align:bottom;width:210.75pt;">作用</td><td class="et2" style="font-size:11pt;font-weight:700;text-align:center;vertical-align:bottom;width:251.25pt;">实现方式</td></tr><tr><td class="et4" rowspan="8" style="font-size:20pt;text-align:center;vertical-align:middle;width:77.25pt;">all</td><td class="et5" style="font-size:11pt;font-weight:700;text-align:center;vertical-align:middle;width:48pt;">1</td><td class="et6" style="font-size:11pt;text-align:center;vertical-align:middle;width:166.5pt;">apostrophemask.py</td><td class="et7" style="font-size:11pt;vertical-align:middle;width:210.75pt;">用utf8代替引号</td><td class="et8" style="font-size:11pt;vertical-align:middle;width:251.25pt;">(“1 AND ‘1’=’1”) <br>‘1 AND %EF%BC%871%EF%BC%87=%EF%BC%871’ </td></tr><tr><td class="et5" style="font-size:11pt;font-weight:700;text-align:center;vertical-align:middle;width:48pt;">2</td><td class="et9" style="font-size:11pt;text-align:center;vertical-align:middle;width:166.5pt;">base64encode.py </td><td class="et10" style="font-size:11pt;vertical-align:middle;width:210.75pt;">用base64编码替换</td><td class="et8" style="font-size:11pt;vertical-align:middle;width:251.25pt;">(“1’ AND SLEEP(5)#”)<br>‘MScgQU5EIFNMRUVQKDUpIw==’</td></tr><tr><td class="et5" style="font-size:11pt;font-weight:700;text-align:center;vertical-align:middle;width:48pt;">3</td><td class="et9" style="font-size:11pt;text-align:center;vertical-align:middle;width:166.5pt;">multiplespaces.py</td><td class="et10" style="font-size:11pt;vertical-align:middle;width:210.75pt;">围绕SQL关键字添加多个空格</td><td class="et8" style="font-size:11pt;vertical-align:middle;width:251.25pt;">(‘1 UNION SELECT foobar’)<br>‘1    UNION     SELECT   foobar’</td></tr><tr><td class="et5" style="font-size:11pt;font-weight:700;text-align:center;vertical-align:middle;width:48pt;">4</td><td class="et9" style="font-size:11pt;text-align:center;vertical-align:middle;width:166.5pt;">space2plus.py</td><td class="et10" style="font-size:11pt;vertical-align:middle;width:210.75pt;">用+替换空格</td><td class="et8" style="font-size:11pt;vertical-align:middle;width:251.25pt;">(‘SELECT id FROM users’)<br>‘SELECT+id+FROM+users’</td></tr><tr><td class="et5" style="font-size:11pt;font-weight:700;text-align:center;vertical-align:middle;width:48pt;">5</td><td class="et9" style="font-size:11pt;text-align:center;vertical-align:middle;width:166.5pt;">nonrecursivereplacement.py</td><td class="et7" style="font-size:11pt;vertical-align:middle;width:210.75pt;">双重查询语句。取代predefined SQL关键字with表示 <br>suitable for替代（例如  .replace（“SELECT”、””)） filters</td><td class="et8" style="font-size:11pt;vertical-align:middle;width:251.25pt;">(‘1 UNION SELECT 2–’)<br>‘1 UNIOUNIONN SELESELECTCT 2–’</td></tr><tr><td class="et5" style="font-size:11pt;font-weight:700;text-align:center;vertical-align:middle;width:48pt;">6</td><td class="et9" style="font-size:11pt;text-align:center;vertical-align:middle;width:166.5pt;">space2randomblank.py</td><td class="et7" style="font-size:11pt;vertical-align:middle;width:210.75pt;">代替空格字符（“”）从一个随机的空<br>白字符可选字符的有效集</td><td class="et8" style="font-size:11pt;vertical-align:middle;width:251.25pt;">(‘SELECT id FROM users’)<br>‘SELECT%0Did%0DFROM%0Ausers’</td></tr><tr><td class="et5" style="font-size:11pt;font-weight:700;text-align:center;vertical-align:middle;width:48pt;">7</td><td class="et9" style="font-size:11pt;text-align:center;vertical-align:middle;width:166.5pt;">unionalltounion.py</td><td class="et10" style="font-size:11pt;vertical-align:middle;width:210.75pt;">替换UNION ALL SELECT UNION SELECT</td><td class="et8" style="font-size:11pt;vertical-align:middle;width:251.25pt;">(‘-1 UNION ALL SELECT’)<br>‘-1 UNION SELECT’</td></tr><tr><td class="et5" style="font-size:11pt;font-weight:700;text-align:center;vertical-align:middle;width:48pt;">8</td><td class="et9" style="font-size:11pt;text-align:center;vertical-align:middle;width:166.5pt;">securesphere.py</td><td class="et10" style="font-size:11pt;vertical-align:middle;width:210.75pt;">追加特制的字符串</td><td class="et8" style="font-size:11pt;vertical-align:middle;width:251.25pt;">(‘1 AND 1=1’)<br>“1 AND 1=1 and ‘0having’=’0having’”</td></tr><tr><td class="et4" rowspan="11" style="font-size:20pt;text-align:center;vertical-align:middle;width:77.25pt;">mssql</td><td class="et11" style="font-size:11pt;font-weight:700;text-align:center;vertical-align:middle;width:48pt;">1</td><td class="et12" style="font-size:11pt;text-align:center;vertical-align:middle;width:166.5pt;">space2hash.py</td><td class="et13" style="font-size:11pt;vertical-align:middle;width:210.75pt;">绕过过滤‘=’ 替换空格字符（”），（’ – ‘）后跟一个破折号注释，一个随机字符串和一个新行（’ n’）</td><td class="et13" style="font-size:11pt;vertical-align:middle;width:251.25pt;"><br>‘1 AND 9227=9227’ <br>‘1–nVNaVoPYeva%0AAND–ngNvzqu%0A9227=9227’ </td></tr><tr><td class="et11" style="font-size:11pt;font-weight:700;text-align:center;vertical-align:middle;width:48pt;">2</td><td class="et14" style="font-size:11pt;text-align:center;vertical-align:middle;width:166.5pt;">equaltolike.py</td><td class="et15" style="font-size:11pt;vertical-align:middle;width:210.75pt;">like 代替等号</td><td class="et13" style="font-size:11pt;vertical-align:middle;width:251.25pt;"><br><em> Input: SELECT </em> FROM users WHERE id=1 <br>2 <em> Output: SELECT </em> FROM users WHERE id LIKE 1 </td></tr><tr><td class="et11" style="font-size:11pt;font-weight:700;text-align:center;vertical-align:middle;width:48pt;">3</td><td class="et12" style="font-size:11pt;text-align:center;vertical-align:middle;width:166.5pt;">space2mssqlblank.py(mssql)</td><td class="et16" style="font-size:11pt;vertical-align:bottom;width:210.75pt;">空格替换为其它空符号</td><td class="et13" style="font-size:11pt;vertical-align:middle;width:251.25pt;">Input: SELECT id FROM users<br>Output: SELECT%08id%02FROM%0Fusers</td></tr><tr><td class="et11" style="font-size:11pt;font-weight:700;text-align:center;vertical-align:middle;width:48pt;">4</td><td class="et12" style="font-size:11pt;text-align:center;vertical-align:middle;width:166.5pt;">space2mssqlhash.py</td><td class="et16" style="font-size:11pt;vertical-align:bottom;width:210.75pt;">替换空格</td><td class="et13" style="font-size:11pt;vertical-align:middle;width:251.25pt;">(‘1 AND 9227=9227’)<br>‘1%23%0AAND%23%0A9227=9227’</td></tr><tr><td class="et11" style="font-size:11pt;font-weight:700;text-align:center;vertical-align:middle;width:48pt;">5</td><td class="et12" style="font-size:11pt;text-align:center;vertical-align:middle;width:166.5pt;">between.py</td><td class="et13" style="font-size:11pt;vertical-align:middle;width:210.75pt;">用between替换大于号（&gt;）</td><td class="et13" style="font-size:11pt;vertical-align:middle;width:251.25pt;">(‘1 AND A &gt; B–’)<br>‘1 AND A NOT BETWEEN 0 AND B–’</td></tr><tr><td class="et11" style="font-size:11pt;font-weight:700;text-align:center;vertical-align:middle;width:48pt;">6</td><td class="et12" style="font-size:11pt;text-align:center;vertical-align:middle;width:166.5pt;">percentage.py</td><td class="et13" style="font-size:11pt;vertical-align:middle;width:210.75pt;">asp允许每个字符前面添加一个%号</td><td class="et13" style="font-size:11pt;vertical-align:middle;width:251.25pt;"><em> Input: SELECT FIELD FROM TABLE<br></em> Output: %S%E%L%E%C%T %F%I%E%L%D %F%R%O%M %T%A%B%L%E</td></tr><tr><td class="et11" style="font-size:11pt;font-weight:700;text-align:center;vertical-align:middle;width:48pt;">7</td><td class="et12" style="font-size:11pt;text-align:center;vertical-align:middle;width:166.5pt;">sp_password.py</td><td class="et13" style="font-size:11pt;vertical-align:middle;width:210.75pt;">追加sp_password’从DBMS日志的自动模糊处理的有效载荷的末尾</td><td class="et13" style="font-size:11pt;vertical-align:middle;width:251.25pt;">(‘1 AND 9227=9227– ‘)<br>‘1 AND 9227=9227– sp_password’</td></tr><tr><td class="et11" style="font-size:11pt;font-weight:700;text-align:center;vertical-align:middle;width:48pt;">8</td><td class="et12" style="font-size:11pt;text-align:center;vertical-align:middle;width:166.5pt;">charencode.py</td><td class="et13" style="font-size:11pt;vertical-align:middle;width:210.75pt;">url编码</td><td class="et13" style="font-size:11pt;vertical-align:middle;width:251.25pt;"><em> Input: SELECT FIELD FROM%20TABLE<br></em> Output: %53%45%4c%45%43%54%20%46%49%45%4c%44%20%46%52%4f%4d%20%54%41%42%4c%45</td></tr><tr><td class="et11" style="font-size:11pt;font-weight:700;text-align:center;vertical-align:middle;width:48pt;">9</td><td class="et12" style="font-size:11pt;text-align:center;vertical-align:middle;width:166.5pt;">randomcase.py</td><td class="et13" style="font-size:11pt;vertical-align:middle;width:210.75pt;">随机大小写</td><td class="et17" style="font-size:10.5pt;vertical-align:middle;width:251.25pt;"><em> Input: INSERT<br></em> Output: InsERt</td></tr><tr><td class="et11" style="font-size:11pt;font-weight:700;text-align:center;vertical-align:middle;width:48pt;">10</td><td class="et12" style="font-size:11pt;text-align:center;vertical-align:middle;width:166.5pt;">charunicodeencode.py</td><td class="et13" style="font-size:11pt;vertical-align:middle;width:210.75pt;">字符串 unicode 编码</td><td class="et13" style="font-size:11pt;vertical-align:middle;width:251.25pt;"><em> Input: SELECT FIELD%20FROM TABLE<br></em> Output: %u0053%u0045%u004c%u0045%u0043%u0054%u0020%u0046%u0049%u0045%u004c%u0044%u0020%u0046%u0052%u004f%u004d%u0020%u0054%u0041%u0042%u004c%u0045′</td></tr><tr><td class="et11" style="font-size:11pt;font-weight:700;text-align:center;vertical-align:middle;width:48pt;">11</td><td class="et12" style="font-size:11pt;text-align:center;vertical-align:middle;width:166.5pt;">space2comment.py</td><td class="et13" style="font-size:11pt;vertical-align:middle;width:210.75pt;">Replaces space character (‘ ‘) with comments ‘/<em> </em>/’</td><td class="et13" style="font-size:11pt;vertical-align:middle;width:251.25pt;"><em> Input: SELECT id FROM users<br></em> Output: SELECT//id//FROM/<em> </em>/users</td></tr><tr><td class="et18" rowspan="18" style="font-size:20pt;text-align:center;vertical-align:middle;width:77.25pt;">mysql &gt;= 5.1.13</td><td class="et19" style="font-size:11pt;font-weight:700;text-align:center;vertical-align:middle;width:48pt;">1</td><td class="et20" style="font-size:11pt;text-align:center;vertical-align:middle;width:166.5pt;">equaltolike.py</td><td class="et21" style="font-size:11pt;vertical-align:middle;width:210.75pt;">like 代替等号</td><td class="et22" style="font-size:11pt;vertical-align:middle;width:251.25pt;"><br><em> Input: SELECT </em> FROM users WHERE id=1 <br>2 <em> Output: SELECT </em> FROM users WHERE id LIKE 1 </td></tr><tr><td class="et19" style="font-size:11pt;font-weight:700;text-align:center;vertical-align:middle;width:48pt;">2</td><td class="et23" style="font-size:10.5pt;text-align:center;vertical-align:middle;width:166.5pt;">greatest.py</td><td class="et24" style="font-size:10.5pt;vertical-align:middle;width:210.75pt;"><span class="font23">绕过过滤</span><span class="font24">’&gt;’ ,</span><span class="font23">用</span><span class="font24">GREATEST</span><span class="font23">替换大于号。</span></td><td class="et25" style="font-size:10.5pt;vertical-align:middle;width:251.25pt;">(‘1 AND A &gt; B’)<br>‘1 AND GREATEST(A,B+1)=A’</td></tr><tr><td class="et19" style="font-size:11pt;font-weight:700;text-align:center;vertical-align:middle;width:48pt;">3</td><td class="et23" style="font-size:10.5pt;text-align:center;vertical-align:middle;width:166.5pt;">apostrophenullencode.py</td><td class="et24" style="font-size:10.5pt;vertical-align:middle;width:210.75pt;">绕过过滤双引号，替换字符和双引号。</td><td class="et22" style="font-size:11pt;vertical-align:middle;width:251.25pt;">tamper(“1 AND ‘1’=’1”)<br><br>‘1 AND %00%271%00%27=%00%271’</td></tr><tr><td class="et26" style="font-size:11pt;font-weight:700;text-align:center;vertical-align:middle;width:48pt;">4</td><td class="et27" style="font-size:11pt;text-align:center;vertical-align:middle;width:166.5pt;">ifnull2ifisnull.py</td><td class="et21" style="font-size:11pt;vertical-align:middle;width:210.75pt;">绕过对 IFNULL 过滤。<br>替换类似’IFNULL(A, B)’为’IF(ISNULL(A), B, A)’</td><td class="et25" style="font-size:10.5pt;vertical-align:middle;width:251.25pt;">(‘IFNULL(1, 2)’)<br>‘IF(ISNULL(1),2,1)’</td></tr><tr><td class="et19" style="font-size:11pt;font-weight:700;text-align:center;vertical-align:middle;width:48pt;">5</td><td class="et27" style="font-size:11pt;text-align:center;vertical-align:middle;width:166.5pt;">space2mssqlhash.py</td><td class="et21" style="font-size:11pt;vertical-align:middle;width:210.75pt;">替换空格</td><td class="et22" style="font-size:11pt;vertical-align:middle;width:251.25pt;">(‘1 AND 9227=9227’)<br>‘1%23%0AAND%23%0A9227=9227’</td></tr><tr><td class="et19" style="font-size:11pt;font-weight:700;text-align:center;vertical-align:middle;width:48pt;">6</td><td class="et27" style="font-size:11pt;text-align:center;vertical-align:middle;width:166.5pt;">modsecurityversioned.py</td><td class="et24" style="font-size:10.5pt;vertical-align:middle;width:210.75pt;">过滤空格，包含完整的查询版本注释</td><td class="et22" style="font-size:11pt;vertical-align:middle;width:251.25pt;">(‘1 AND 2&gt;1–’)<br>‘1 /<em>!30874AND 2&gt;1</em>/–’</td></tr><tr><td class="et19" style="font-size:11pt;font-weight:700;text-align:center;vertical-align:middle;width:48pt;">7</td><td class="et27" style="font-size:11pt;text-align:center;vertical-align:middle;width:166.5pt;">space2mysqlblank.py</td><td class="et21" style="font-size:11pt;vertical-align:middle;width:210.75pt;">空格替换其它空白符号(mysql)</td><td class="et22" style="font-size:11pt;vertical-align:middle;width:251.25pt;">Input: SELECT id FROM users<br>Output: SELECT%0Bid%0BFROM%A0users</td></tr><tr><td class="et19" style="font-size:11pt;font-weight:700;text-align:center;vertical-align:middle;width:48pt;">8</td><td class="et27" style="font-size:11pt;text-align:center;vertical-align:middle;width:166.5pt;">between.py</td><td class="et24" style="font-size:10.5pt;vertical-align:middle;width:210.75pt;">用between替换大于号（&gt;）</td><td class="et22" style="font-size:11pt;vertical-align:middle;width:251.25pt;">(‘1 AND A &gt; B–’)<br>‘1 AND A NOT BETWEEN 0 AND B–’</td></tr><tr><td class="et19" style="font-size:11pt;font-weight:700;text-align:center;vertical-align:middle;width:48pt;">9</td><td class="et27" style="font-size:11pt;text-align:center;vertical-align:middle;width:166.5pt;">modsecurityzeroversioned.py</td><td class="et21" style="font-size:11pt;vertical-align:middle;width:210.75pt;">包含了完整的查询与零版本注释</td><td class="et22" style="font-size:11pt;vertical-align:middle;width:251.25pt;">(‘1 AND 2&gt;1–’)<br>‘1 /<em>!00000AND 2&gt;1</em>/–’</td></tr><tr><td class="et19" style="font-size:11pt;font-weight:700;text-align:center;vertical-align:middle;width:48pt;">10</td><td class="et27" style="font-size:11pt;text-align:center;vertical-align:middle;width:166.5pt;">space2mysqldash.py</td><td class="et24" style="font-size:10.5pt;vertical-align:middle;width:210.75pt;">替换空格字符（”）（’ – ‘）后跟一个破折号注释一个新行（’ n’）</td><td class="et22" style="font-size:11pt;vertical-align:middle;width:251.25pt;">(‘1 AND 9227=9227’)<br>‘1–%0AAND–%0A9227=9227’</td></tr><tr><td class="et19" style="font-size:11pt;font-weight:700;text-align:center;vertical-align:middle;width:48pt;">11</td><td class="et27" style="font-size:11pt;text-align:center;vertical-align:middle;width:166.5pt;">bluecoat.py</td><td class="et21" style="font-size:11pt;vertical-align:middle;width:210.75pt;">代替空格字符后与一个有效的随机空白字符的SQL语句。<br>然后替换=为like</td><td class="et22" style="font-size:11pt;vertical-align:middle;width:251.25pt;">(‘SELECT id FROM users where id = 1’)<br>‘SELECT%09id FROM users where id LIKE 1’</td></tr><tr><td class="et19" style="font-size:11pt;font-weight:700;text-align:center;vertical-align:middle;width:48pt;">12</td><td class="et27" style="font-size:11pt;text-align:center;vertical-align:middle;width:166.5pt;">percentage.py</td><td class="et24" style="font-size:10.5pt;vertical-align:middle;width:210.75pt;">asp允许每个字符前面添加一个%号</td><td class="et22" style="font-size:11pt;vertical-align:middle;width:251.25pt;"><em> Input: SELECT FIELD FROM TABLE<br></em> Output: %S%E%L%E%C%T %F%I%E%L%D %F%R%O%M %T%A%B%L%E</td></tr><tr><td class="et19" style="font-size:11pt;font-weight:700;text-align:center;vertical-align:middle;width:48pt;">13</td><td class="et27" style="font-size:11pt;text-align:center;vertical-align:middle;width:166.5pt;">charencode.py</td><td class="et21" style="font-size:11pt;vertical-align:middle;width:210.75pt;">url编码</td><td class="et22" style="font-size:11pt;vertical-align:middle;width:251.25pt;"><em> Input: SELECT FIELD FROM%20TABLE<br></em> Output: %53%45%4c%45%43%54%20%46%49%45%4c%44%20%46%52%4f%4d%20%54%41%42%4c%45</td></tr><tr><td class="et19" style="font-size:11pt;font-weight:700;text-align:center;vertical-align:middle;width:48pt;">14</td><td class="et27" style="font-size:11pt;text-align:center;vertical-align:middle;width:166.5pt;">randomcase.py</td><td class="et24" style="font-size:10.5pt;vertical-align:middle;width:210.75pt;">随机大小写</td><td class="et25" style="font-size:10.5pt;vertical-align:middle;width:251.25pt;"><em> Input: INSERT<br></em> Output: InsERt</td></tr><tr><td class="et19" style="font-size:11pt;font-weight:700;text-align:center;vertical-align:middle;width:48pt;">15</td><td class="et27" style="font-size:11pt;text-align:center;vertical-align:middle;width:166.5pt;">versionedkeywords.py</td><td class="et21" style="font-size:11pt;vertical-align:middle;width:210.75pt;">Encloses each non-function keyword with versioned MySQL comment</td><td class="et22" style="font-size:11pt;vertical-align:middle;width:251.25pt;"><em> Input: 1 UNION ALL SELECT NULL, NULL, CONCAT(CHAR(58,104,116,116,58),IFNULL(CAST(CURRENT_USER() AS CHAR),CHAR(32)),CHAR(58,100,114,117,58))#<br></em> Output: 1/<em>!UNION<strong>!ALL</strong>!SELECT**!NULL</em>/,/<em>!NULL</em>/, CONCAT(CHAR(58,104,116,116,58),IFNULL(CAST(CURRENT_USER()/<em>!AS**!CHAR</em>/),CHAR(32)),CHAR(58,100,114,117,58))#</td></tr><tr><td class="et19" style="font-size:11pt;font-weight:700;text-align:center;vertical-align:middle;width:48pt;">16</td><td class="et27" style="font-size:11pt;text-align:center;vertical-align:middle;width:166.5pt;">space2comment.py</td><td class="et24" style="font-size:10.5pt;vertical-align:middle;width:210.75pt;">Replaces space character (‘ ‘) with comments ‘/<em> </em>/’</td><td class="et22" style="font-size:11pt;vertical-align:middle;width:251.25pt;"><em> Input: SELECT id FROM users<br></em> Output: SELECT//id//FROM/<em> </em>/users</td></tr><tr><td class="et19" style="font-size:11pt;font-weight:700;text-align:center;vertical-align:middle;width:48pt;">17</td><td class="et27" style="font-size:11pt;text-align:center;vertical-align:middle;width:166.5pt;">charunicodeencode.py</td><td class="et21" style="font-size:11pt;vertical-align:middle;width:210.75pt;">字符串 unicode 编码</td><td class="et22" style="font-size:11pt;vertical-align:middle;width:251.25pt;"><em> Input: SELECT FIELD%20FROM TABLE<br></em> Output: %u0053%u0045%u004c%u0045%u0043%u0054%u0020%u0046%u0049%u0045%u004c%u0044%u0020%u0046%u0052%u004f%u004d%u0020%u0054%u0041%u0042%u004c%u0045′</td></tr><tr><td class="et19" style="font-size:11pt;font-weight:700;text-align:center;vertical-align:middle;width:48pt;">18</td><td class="et27" style="font-size:11pt;text-align:center;vertical-align:middle;width:166.5pt;">versionedmorekeywords.py</td><td class="et24" style="font-size:10.5pt;vertical-align:middle;width:210.75pt;">注释绕过</td><td class="et22" style="font-size:11pt;vertical-align:middle;width:251.25pt;"><em> Input: 1 UNION ALL SELECT NULL, NULL, CONCAT(CHAR(58,122,114,115,58),IFNULL(CAST(CURRENT_USER() AS CHAR),CHAR(32)),CHAR(58,115,114,121,58))#<br></em> Output: 1/<em>!UNION<strong>!ALL</strong>!SELECT**!NULL</em>/,/<em>!NULL</em>/,/<em>!CONCAT</em>/(/<em>!CHAR</em>/(58,122,114,115,58),/<em>!IFNULL</em>/(CAST(/<em>!CURRENT_USER</em>/()/<em>!AS**!CHAR</em>/),/<em>!CHAR</em>/(32)),/<em>!CHAR</em>/(58,115,114,121,58))#</td></tr><tr><td class="et28" rowspan="2" style="font-size:20pt;text-align:center;vertical-align:middle;width:77.25pt;">MySQL &lt; 5.1</td><td class="et19" style="font-size:11pt;font-weight:700;text-align:center;vertical-align:middle;width:48pt;">19</td><td class="et27" style="font-size:11pt;text-align:center;vertical-align:middle;width:166.5pt;">halfversionedmorekeywords.py</td><td class="et29" style="font-size:11pt;vertical-align:middle;width:210.75pt;">关键字前加注释</td><td class="et22" style="font-size:11pt;vertical-align:middle;width:251.25pt;"><em> Input: value’ UNION ALL SELECT CONCAT(CHAR(58,107,112,113,58),IFNULL(CAST(CURRENT_USER() AS CHAR),CHAR(32)),CHAR(58,97,110,121,58)), NULL, NULL# AND ‘QDWa’=’QDWa<br></em> Output: value’/<em>!0UNION/</em>!0ALL/<em>!0SELECT/</em>!0CONCAT(/<em>!0CHAR(58,107,112,113,58),/</em>!0IFNULL(CAST(/<em>!0CURRENT_USER()/</em>!0AS/<em>!0CHAR),/</em>!0CHAR(32)),/<em>!0CHAR(58,97,110,121,58)), NULL, NULL#/</em>!0AND ‘QDWa’=’QDWa</td></tr><tr><td class="et19" style="font-size:11pt;font-weight:700;text-align:center;vertical-align:middle;width:48pt;">20</td><td class="et27" style="font-size:11pt;text-align:center;vertical-align:middle;width:166.5pt;">halfversionedmorekeywords.py</td><td class="et21" style="font-size:11pt;vertical-align:middle;width:210.75pt;">当数据库为mysql时绕过防火墙，每个关键字之前添加<br>mysql版本评论</td><td class="et22" style="font-size:11pt;vertical-align:middle;width:251.25pt;">1.(“value’ UNION ALL SELECT CONCAT(CHAR(58,107,112,113,58),IFNULL(CAST(CURRENT_USER() AS CHAR),CHAR(32)),CHAR(58,97,110,121,58)), NULL, NULL# AND ‘QDWa’=’QDWa”)<br>2.”value’/<em>!0UNION/</em>!0ALL/<em>!0SELECT/</em>!0CONCAT(/<em>!0CHAR(58,107,112,113,58),/</em>!0IFNULL(CAST(/<em>!0CURRENT_USER()/</em>!0AS/<em>!0CHAR),/</em>!0CHAR(32)),/<em>!0CHAR(58,97,110,121,58)),/</em>!0NULL,/<em>!0NULL#/</em>!0AND ‘QDWa’=’QDWa”</td></tr><tr><td class="et28" style="font-size:20pt;text-align:center;vertical-align:middle;width:77.25pt;">MySQL &gt;= 5.1.13</td><td class="et19" style="font-size:11pt;font-weight:700;text-align:center;vertical-align:middle;width:48pt;">21</td><td class="et27" style="font-size:11pt;text-align:center;vertical-align:middle;width:166.5pt;">space2morehash.py</td><td class="et29" style="font-size:11pt;vertical-align:middle;width:210.75pt;">空格替换为 #号 以及更多随机字符串 换行符</td><td class="et30" style="font-size:11pt;vertical-align:bottom;width:251.25pt;"><em> Input: 1 AND 9227=9227<br></em> Output: 1%23PTTmJopxdWJ%0AAND%23cWfcVRPV%0A9227=9227</td></tr><tr><td class="et31" rowspan="7" style="font-size:20pt;text-align:center;vertical-align:middle;width:77.25pt;"> Oracle</td><td class="et32" style="font-size:11pt;font-weight:700;text-align:center;vertical-align:middle;width:48pt;">1</td><td class="et33" style="font-size:10.5pt;text-align:center;vertical-align:middle;width:166.5pt;">greatest.py</td><td class="et34" style="font-size:10.5pt;vertical-align:middle;width:210.75pt;"><span class="font17">绕过过滤</span><span class="font3">’&gt;’ ,</span><span class="font17">用</span><span class="font3">GREATEST</span><span class="font17">替换大于号。</span></td><td class="et35" style="font-size:10.5pt;vertical-align:middle;width:251.25pt;">(‘1 AND A &gt; B’)<br>‘1 AND GREATEST(A,B+1)=A’</td></tr><tr><td class="et32" style="font-size:11pt;font-weight:700;text-align:center;vertical-align:middle;width:48pt;">2</td><td class="et33" style="font-size:10.5pt;text-align:center;vertical-align:middle;width:166.5pt;">apostrophenullencode.py</td><td class="et34" style="font-size:10.5pt;vertical-align:middle;width:210.75pt;">绕过过滤双引号，替换字符和双引号。</td><td class="et36" style="font-size:11pt;vertical-align:middle;width:251.25pt;">tamper(“1 AND ‘1’=’1”)<br><br>‘1 AND %00%271%00%27=%00%271’</td></tr><tr><td class="et32" style="font-size:11pt;font-weight:700;text-align:center;vertical-align:middle;width:48pt;">3</td><td class="et33" style="font-size:10.5pt;text-align:center;vertical-align:middle;width:166.5pt;">between.py</td><td class="et37" style="font-size:11pt;vertical-align:middle;width:210.75pt;">用between替换大于号（&gt;）</td><td class="et36" style="font-size:11pt;vertical-align:middle;width:251.25pt;">(‘1 AND A &gt; B–’)<br>‘1 AND A NOT BETWEEN 0 AND B–’</td></tr><tr><td class="et32" style="font-size:11pt;font-weight:700;text-align:center;vertical-align:middle;width:48pt;">4</td><td class="et33" style="font-size:10.5pt;text-align:center;vertical-align:middle;width:166.5pt;">charencode.py</td><td class="et37" style="font-size:11pt;vertical-align:middle;width:210.75pt;">url编码</td><td class="et36" style="font-size:11pt;vertical-align:middle;width:251.25pt;"><em> Input: SELECT FIELD FROM%20TABLE<br></em> Output: %53%45%4c%45%43%54%20%46%49%45%4c%44%20%46%52%4f%4d%20%54%41%42%4c%45</td></tr><tr><td class="et32" style="font-size:11pt;font-weight:700;text-align:center;vertical-align:middle;width:48pt;">5</td><td class="et33" style="font-size:10.5pt;text-align:center;vertical-align:middle;width:166.5pt;">randomcase.py</td><td class="et37" style="font-size:11pt;vertical-align:middle;width:210.75pt;">随机大小写</td><td class="et35" style="font-size:10.5pt;vertical-align:middle;width:251.25pt;"><em> Input: INSERT<br></em> Output: InsERt</td></tr><tr><td class="et38" style="font-size:11pt;font-weight:700;text-align:center;vertical-align:middle;width:48pt;">6</td><td class="et33" style="font-size:10.5pt;text-align:center;vertical-align:middle;width:166.5pt;">charunicodeencode.py</td><td class="et37" style="font-size:11pt;vertical-align:middle;width:210.75pt;">字符串 unicode 编码</td><td class="et36" style="font-size:11pt;vertical-align:middle;width:251.25pt;"><em> Input: SELECT FIELD%20FROM TABLE<br></em> Output: %u0053%u0045%u004c%u0045%u0043%u0054%u0020%u0046%u0049%u0045%u004c%u0044%u0020%u0046%u0052%u004f%u004d%u0020%u0054%u0041%u0042%u004c%u0045′</td></tr><tr><td class="et32" style="font-size:11pt;font-weight:700;text-align:center;vertical-align:middle;width:48pt;">7</td><td class="et33" style="font-size:10.5pt;text-align:center;vertical-align:middle;width:166.5pt;">space2comment.py</td><td class="et37" style="font-size:11pt;vertical-align:middle;width:210.75pt;">Replaces space character (‘ ‘) with comments ‘/<strong>/’</strong></td><td class="et36" style="font-size:11pt;vertical-align:middle;width:251.25pt;"><em> Input: SELECT id FROM users<br></em> Output: SELECT//id//FROM//users</td></tr><tr><td class="et39" rowspan="8" style="font-size:20pt;text-align:center;vertical-align:middle;width:77.25pt;"> PostgreSQL</td><td class="et40" style="font-size:11pt;font-weight:700;text-align:center;vertical-align:middle;width:48pt;">1</td><td class="et41" style="font-size:10.5pt;text-align:center;vertical-align:middle;width:166.5pt;">greatest.py</td><td class="et42" style="font-size:10.5pt;vertical-align:middle;width:210.75pt;"><span class="font21">绕过过滤</span><span class="font9">’&gt;’ ,</span><span class="font21">用</span><span class="font9">GREATEST</span><span class="font21">替换大于号。</span></td><td class="et43" style="font-size:10.5pt;vertical-align:middle;width:251.25pt;">(‘1 AND A &gt; B’)<br>‘1 AND GREATEST(A,B+1)=A’</td></tr><tr><td class="et40" style="font-size:11pt;font-weight:700;text-align:center;vertical-align:middle;width:48pt;">2</td><td class="et41" style="font-size:10.5pt;text-align:center;vertical-align:middle;width:166.5pt;">apostrophenullencode.py</td><td class="et42" style="font-size:10.5pt;vertical-align:middle;width:210.75pt;">绕过过滤双引号，替换字符和双引号。</td><td class="et44" style="font-size:11pt;vertical-align:middle;width:251.25pt;">tamper(“1 AND ‘1’=’1”)<br><br>‘1 AND %00%271%00%27=%00%271’</td></tr><tr><td class="et40" style="font-size:11pt;font-weight:700;text-align:center;vertical-align:middle;width:48pt;">3</td><td class="et41" style="font-size:10.5pt;text-align:center;vertical-align:middle;width:166.5pt;">between.py</td><td class="et45" style="font-size:11pt;vertical-align:bottom;width:210.75pt;">用between替换大于号（&gt;）</td><td class="et44" style="font-size:11pt;vertical-align:middle;width:251.25pt;">(‘1 AND A &gt; B–’)<br>‘1 AND A NOT BETWEEN 0 AND B–’</td></tr><tr><td class="et40" style="font-size:11pt;font-weight:700;text-align:center;vertical-align:middle;width:48pt;">4</td><td class="et41" style="font-size:10.5pt;text-align:center;vertical-align:middle;width:166.5pt;">percentage.py</td><td class="et45" style="font-size:11pt;vertical-align:bottom;width:210.75pt;">asp允许每个字符前面添加一个%号</td><td class="et44" style="font-size:11pt;vertical-align:middle;width:251.25pt;"><em> Input: SELECT FIELD FROM TABLE<br></em> Output: %S%E%L%E%C%T %F%I%E%L%D %F%R%O%M %T%A%B%L%E</td></tr><tr><td class="et40" style="font-size:11pt;font-weight:700;text-align:center;vertical-align:middle;width:48pt;">5</td><td class="et41" style="font-size:10.5pt;text-align:center;vertical-align:middle;width:166.5pt;">charencode.py</td><td class="et45" style="font-size:11pt;vertical-align:bottom;width:210.75pt;">url编码</td><td class="et44" style="font-size:11pt;vertical-align:middle;width:251.25pt;"><em> Input: SELECT FIELD FROM%20TABLE<br></em> Output: %53%45%4c%45%43%54%20%46%49%45%4c%44%20%46%52%4f%4d%20%54%41%42%4c%45</td></tr><tr><td class="et40" style="font-size:11pt;font-weight:700;text-align:center;vertical-align:middle;width:48pt;">6</td><td class="et41" style="font-size:10.5pt;text-align:center;vertical-align:middle;width:166.5pt;">randomcase.py</td><td class="et45" style="font-size:11pt;vertical-align:bottom;width:210.75pt;">随机大小写</td><td class="et43" style="font-size:10.5pt;vertical-align:middle;width:251.25pt;"><em> Input: INSERT<br></em> Output: InsERt</td></tr><tr><td class="et46" style="font-size:11pt;font-weight:700;text-align:center;vertical-align:middle;width:48pt;">7</td><td class="et41" style="font-size:10.5pt;text-align:center;vertical-align:middle;width:166.5pt;">charunicodeencode.py</td><td class="et45" style="font-size:11pt;vertical-align:bottom;width:210.75pt;">字符串 unicode 编码</td><td class="et44" style="font-size:11pt;vertical-align:middle;width:251.25pt;"><em> Input: SELECT FIELD%20FROM TABLE<br></em> Output: %u0053%u0045%u004c%u0045%u0043%u0054%u0020%u0046%u0049%u0045%u004c%u0044%u0020%u0046%u0052%u004f%u004d%u0020%u0054%u0041%u0042%u004c%u0045′</td></tr><tr><td class="et40" style="font-size:11pt;font-weight:700;text-align:center;vertical-align:middle;width:48pt;">8</td><td class="et41" style="font-size:10.5pt;text-align:center;vertical-align:middle;width:166.5pt;">space2comment.py</td><td class="et47" style="font-size:11pt;vertical-align:bottom;width:210.75pt;">Replaces space character (‘ ‘) with comments ‘/<strong>/’</strong></td><td class="et44" style="font-size:11pt;vertical-align:middle;width:251.25pt;"><em> Input: SELECT id FROM users<br></em> Output: SELECT//id//FROM//users</td></tr><tr><td class="et48" style="font-size:20pt;text-align:center;vertical-align:middle;width:77.25pt;">Access</td><td class="et3" style="font-size:11pt;font-weight:700;text-align:center;vertical-align:middle;width:48pt;">1</td><td class="et49" style="font-size:11pt;text-align:center;vertical-align:middle;width:166.5pt;">appendnullbyte.py</td><td class="et50" style="font-size:11pt;vertical-align:middle;width:210.75pt;">在有效负荷结束位置加载零字节字符编码</td><td class="et51" style="font-size:11pt;vertical-align:middle;width:251.25pt;">(‘1 AND 1=1’)<br>‘1 AND 1=1%00’</td></tr><tr><td class="et52" rowspan="3" style="font-size:20pt;text-align:center;vertical-align:middle;width:77.25pt;">其他</td><td class="et53" style="font-size:11pt;vertical-align:bottom;width:48pt;"> </td><td class="et54" style="font-size:11pt;text-align:center;vertical-align:middle;width:166.5pt;">chardoubleencode.py</td><td class="et55" style="font-size:11pt;vertical-align:middle;width:210.75pt;">双url编码(不处理以编码的)</td><td class="et56" style="font-size:11pt;vertical-align:bottom;width:251.25pt;"><em> Input: SELECT FIELD FROM%20TABLE<br></em> Output: %2553%2545%254c%2545%2543%2554%2520%2546%2549%2545%254c%2544%2520%2546%2552%254f%254d%2520%2554%2541%2542%254c%2545</td></tr><tr><td class="et53" style="font-size:11pt;vertical-align:bottom;width:48pt;"> </td><td class="et54" style="font-size:11pt;text-align:center;vertical-align:middle;width:166.5pt;">unmagicquotes.py</td><td class="et55" style="font-size:11pt;vertical-align:middle;width:210.75pt;">宽字符绕过 GPC  addslashes</td><td class="et56" style="font-size:11pt;vertical-align:bottom;width:251.25pt;"><em> Input: 1′ AND 1=1<br></em> Output: 1%bf%27 AND 1=1–%20</td></tr><tr><td class="et53" style="font-size:11pt;vertical-align:bottom;width:48pt;"> </td><td class="et54" style="font-size:11pt;text-align:center;vertical-align:middle;width:166.5pt;">randomcomments.py</td><td class="et55" style="font-size:11pt;vertical-align:middle;width:210.75pt;">用/**/分割sql关键字</td><td class="et56" style="font-size:11pt;vertical-align:bottom;width:251.25pt;">‘INSERT’ becomes ‘IN//S//ERT’</td></tr></tbody></table></div>
+
+      
+    </div>
+    
+  </div>
+  
+    
+    <div class="copyright">
+        <p><span>本文标题:</span><a href="/2018/08-14-sqlmap.html">sqlmap用户手册及实战</a></p>
+        <p><span>文章作者:</span><a href="/" title="回到主页">梦在远方</a></p>
+        <p><span>发布时间:</span>2018-08-14, 20:04:44</p>
+        <p><span>最后更新:</span>2018-08-24, 09:13:09</p>
+        <p>
+            <span>原始链接:</span><a class="post-url" href="/2018/08-14-sqlmap.html" title="sqlmap用户手册及实战">www.cesarz.com.cn/2018/08-14-sqlmap.html</a>
+            <span class="copy-path" data-clipboard-text="原文: www.cesarz.com.cn/2018/08-14-sqlmap.html　　作者: 梦在远方" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <script> var clipboard = new Clipboard('.copy-path'); </script>
+        </p>
+        <p>
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
+        </p>
+    </div>
+
+
+
+    <nav id="article-nav">
+        
+            <div id="article-nav-newer" class="article-nav-title">
+                <a href="/2018/08-15-Linux.html">
+                    Linux基础
+                </a>
+            </div>
+        
+        
+            <div id="article-nav-older" class="article-nav-title">
+                <a href="/2018/08-13-sql-injection.html">
+                    sql注入
+                </a>
+            </div>
+        
+    </nav>
+
+  
+</article>
+
+    <div id="toc" class="toc-article">
+        <strong class="toc-title">文章目录</strong>
+        
+            <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#sqlmap介绍"><span class="toc-number">1.</span> <span class="toc-text">sqlmap介绍</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#常用命令"><span class="toc-number">2.</span> <span class="toc-text">常用命令</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Output-verbosity-输出冗长"><span class="toc-number">3.</span> <span class="toc-text">Output verbosity(输出冗长)</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#tamper脚本分类说明"><span class="toc-number">4.</span> <span class="toc-text">tamper脚本分类说明</span></a></li></ol>
+        
+    </div>
+    <style>
+        .left-col .switch-btn,
+        .left-col .switch-area {
+            display: none;
+        }
+        .toc-level-6 i,
+        .toc-level-6 ol {
+            display: none !important;
+        }
+    </style>
+
+    <input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
+
+    <script>
+        yiliaConfig.toc = ["隐藏目录", "显示目录", !!"true"];
+    </script>
+
+
+
+    
+<div class="share">
+    
+        <div class="bdsharebuttonbox">
+            <a href="#" class="fa fa-twitter bds_twi" data-cmd="twi" title="分享到推特"></a>
+            <a href="#" class="fa fa-weibo bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+            <a href="#" class="fa fa-qq bds_sqq" data-cmd="sqq" title="分享给 QQ 好友"></a>
+            <a href="#" class="fa fa-files-o bds_copy" data-cmd="copy" title="复制网址"></a>
+            <a href="#" class="fa fa fa-envelope-o bds_mail" data-cmd="mail" title="通过邮件分享"></a>
+            <a href="#" class="fa fa-weixin bds_weixin" data-cmd="weixin" title="生成文章二维码"></a>
+            <a href="#" class="fa fa-share-alt bds_more" data-cmd="more"></i></a>
+        </div>
+        <script>
+            window._bd_share_config={
+                "common":{"bdSnsKey":{},"bdText":"sqlmap用户手册及实战　| 梦在远方　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+        </script>
+    
+
+    
+        <div class="addthis_sharing_toolbox"></div>
+    
+</div>
+
+
+
+
+    
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/2018/08-15-Linux.html" title="上一篇: Linux基础">
+                <i class="fa icon-left-big"></i>
+            </a>
+        
+
+        <a title="文章列表"><i class="fa icon-th-large"></i><i class="fa icon-right-big"></i></a>
+
+        
+            <a href="/2018/08-13-sql-injection.html" title="下一篇: sql注入">
+                <i class="fa icon-right-big"></i>
+            </a>
+        
+    </div>
+
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2019/06-29-npm-error-resolve.html">npm ERR! Unexpected end of JSON input while parsing near和npm ERR! code EINTEGRITY</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05-06-college-probability.html">概率论与数理统计习题答案(第二版) 范大茵 陈永华编</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05-04-Artificial-competition.html">人工智能&大数据相关比赛信息收集</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03-13-matlab-qus1.html">matlab使用sym出现警告提示</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/01-18-python-error-resolve.html">python3异常处理和断言assert使用小结</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/11-27-ubuntu-skills.html">ubuntu下技巧总结</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/10-24-cprogram1.html">根据输入的图的邻接矩阵A，判断此图的连通分量的个数</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/10-14-notebook.html">杂项</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/10-14-pycharm-error.html">安装完Pycharm，启动时碰到"failed to load jvm dll"的解决方案</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09-03-xinsheng.html">来自老学长的小小礼包</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/08-28-online-website.html">在线学习网站集合</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/08-28-CTF-writeup.html">CTF的各类比赛writeup合集</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/08-27-ctf-case.html">ctf案例集合</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/08-27-python-error.html">Python运行错误及解决方案汇总</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/08-25-decode-script.html">CTF常用python脚本</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/08-25-CTF-Tools-online.html">CTF Tools</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/08-16-HashPump.html">HashPump用户手册</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/08-15-python.html">python</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/08-15-Linux.html">Linux基础</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/08-14-sqlmap.html">sqlmap用户手册及实战</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/08-13-sql-injection.html">sql注入</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/08-12-CTF.html">CTF简介</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/06-29-college_weiji.html">微机复习习题部分计算解答</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/06-12-V-REP PRO.html">V-REP PRO机器人仿真系统有趣实例</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/06-05-python实现小猪佩奇.html">python实现小猪佩奇</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/06-03-mysql存储过程使用案例.html">mysql存储过程使用案例</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/05-28-c语言简单日历小程序.html">c语言简单日历小程序</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/05-25-markdown.html">markdown用户手册</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/05-20-HEXO-ALL.html">HEXO用户手册</a></li></ul>
+
+
+
+
+    <script>
+        
+    </script>
+
+
+<!--gitment 评论-->
+  <div class="comments" id="comments">
+
+	<!--汉化-->
+    <!-- <link rel="stylesheet" href="https://billts.site/extra_css/gitment.css"> -->
+    <link rel="stylesheet" href="/css/gitment.css">
+    <script src="/js/gitment.js"></script>
+	<!-- <script src="https://billts.site/js/gitment.js"></script> -->
+	<!--原型-->
+	<!--
+	<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
+	<script src="https://imsun.github.io/gitment/dist/gitment.browser.js" type="text/javascript"></script>
+	-->
+
+<div id="gitmentContainer" style="margin-bottom: -19px;"></div>
+
+  <style>
+    .gitment-container a {
+      border: none;
+    }
+    .comments {
+      margin: 60px 0 0;padding: 0 60px;
+    }
+  </style>
+  <script type="text/javascript">
+    var gitment = new Gitment({
+	  id: 'Tue Aug 14 2018 20:04:44 GMT+0800',
+	  title: 'sqlmap用户手册及实战',
+	  owner: 'chenzihaoww',
+	  repo: 'chenzihaosay.github.io',
+	  oauth: {
+		client_id: '1c384ef9543948e154bf',
+		client_secret: '64318568889df6956c6dcfdc27030a57f588a46a',
+	  },
+    })
+    gitment.render('gitmentContainer')
+  </script>
+</div>
+
+    <script> loadComment(); </script>
+
+
+<!--gitment 评论 end-->
+
+
+</div>
+      <footer id="footer">
+    <div class="outer">
+      <div class="footer-left">
+                <!-- <i class="fa fa-copyright"></i>
+                2018-2019 梦在远方 -->
+                <i class="fa icon-heart-empty animated infinite pulse" style="color:red">Welcome!</i>
+            </div>
+            <div class="footer-right">
+                <!-- <a href="http://hexo.io/" target="_blank" title="快速、简洁且高效的博客框架">Hexo</a> -->
+                <!--Theme <a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" title="简而不减 Hexo 双栏博客主题  v">Yelee</a>
+                -->
+                2019©  <i class="fa icon-heart animated infinite pulse" style="color:red">梦在远方</i>
+            </div>
+        </div>
+        
+            <div class="visit">
+                
+                    <span id="busuanzi_container_site_pv" style='display:none'>
+                        <span id="site-visit" title="本站到访数"><i class="fa icon-user" aria-hidden="true"></i><span id="busuanzi_value_site_uv"></span>
+                        </span>
+                    </span>
+                
+                
+                
+            </div>
+        
+    </div>
+</footer>
+
+    </div>
+    
+    <script src="/js/GithubRepoWidget.js"></script>
+
+<script data-main="/js/main.js" src="//cdnjs.cloudflare.com/ajax/libs/require.js/2.3.5/require.min.js"></script>
+
+
+
+
+
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-121838755-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+
+    <script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script src="//cdn.bootcss.com/mathjax/2.6.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+<div class="scroll" id="scroll">
+    <a href="#" title="返回顶部"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments" onclick="load$hide();" title="查看评论"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer" title="转到底部"><i class="fa fa-arrow-down"></i></a>
+</div>
+
+<script>
+    // Open in New Window
+    
+        var oOpenInNew = {
+             github: ".github-widget a", 
+            
+             post: ".article-entry a[href], .copyright a[href]", 
+            
+            
+            
+            
+             miniArchives: "a.post-list-link", 
+            
+             friends: "#js-friends a", 
+             socail: ".social a" 
+        }
+        for (var x in oOpenInNew) {
+            $(oOpenInNew[x]).attr("target", "_blank");
+        }
+    
+</script>
+
+    <script>
+        var originTitle = document.title;
+        var titleTime;
+        document.addEventListener("visibilitychange", function() {
+            if (document.hidden) {
+                document.title = "欢迎再次访问" + originTitle;
+                clearTimeout(titleTime);
+            }
+            else {
+                document.title = "欢迎访问" + originTitle;
+                titleTime = setTimeout(function() {
+                    document.title = originTitle;
+                }, 2000);
+            }
+        })
+    </script>
+
+
+ <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  </div>
+
+</body>
+</html>
