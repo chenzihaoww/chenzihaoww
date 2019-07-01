@@ -3,6 +3,27 @@
 
 
     
+    
+  <url>
+    <loc>www.cesarz.com.cn/2018/08-15-python.html</loc>
+    <lastmod>2019-06-29T04:15:21.821Z</lastmod>
+    <data>
+        <display>
+        <title>python</title>
+        <pubTime>2018-08-15T13:58:48.000Z</pubTime>
+        
+        <tag>python</tag>
+         
+         
+           
+             
+              <breadCrumb title="Document" url="www.cesarz.com.cn/categories/Document/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
   <url>
     <loc>www.cesarz.com.cn/2019/06-29-npm-error-resolve.html</loc>
     <lastmod>2019-06-29T03:24:01.852Z</lastmod>
@@ -181,6 +202,26 @@
 
     
   <url>
+    <loc>www.cesarz.com.cn/2019/02-15-zizhu-publicity.html</loc>
+    <lastmod>2019-02-24T08:49:29.667Z</lastmod>
+    <data>
+        <display>
+        <title>常熟理工学院资助政策大盘点</title>
+        <pubTime>2019-02-14T23:36:35.000Z</pubTime>
+        
+        <tag>资助宣传</tag>
+         
+         
+           
+             
+              <breadCrumb title="大学" url="www.cesarz.com.cn/categories/%E5%A4%A7%E5%AD%A6/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>www.cesarz.com.cn/2018/09-03-xinsheng.html</loc>
     <lastmod>2019-01-21T04:41:55.015Z</lastmod>
     <data>
@@ -310,26 +351,6 @@
         <pubTime>2018-08-15T00:57:18.000Z</pubTime>
         
         <tag>Linux</tag>
-         
-         
-           
-             
-              <breadCrumb title="Document" url="www.cesarz.com.cn/categories/Document/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>www.cesarz.com.cn/2018/08-15-python.html</loc>
-    <lastmod>2018-11-03T03:15:56.178Z</lastmod>
-    <data>
-        <display>
-        <title>python</title>
-        <pubTime>2018-08-15T13:58:48.000Z</pubTime>
-        
-        <tag>python</tag>
          
          
            
@@ -582,6 +603,5 @@
     </data>
     </url>
 
-    
     
 </urlset>
