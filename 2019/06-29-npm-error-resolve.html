@@ -23,7 +23,7 @@
 <meta property="og:description" content="npm ERR! Unexpected end of JSON input while parsing near和npm ERR! code EINTEGRITY解决方案">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="/article_img/npm_error-1.png">
-<meta property="og:updated_time" content="2019-06-29T03:24:01.852Z">
+<meta property="og:updated_time" content="2019-08-12T03:38:12.735Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="npm ERR! Unexpected end of JSON input while parsing near和npm ERR! code EINTEGRITY">
 <meta name="twitter:description" content="npm ERR! Unexpected end of JSON input while parsing near和npm ERR! code EINTEGRITY解决方案">
@@ -414,7 +414,7 @@
           
         <p>最近有一段时间没用npm再用的时候发现了不少错误，在使用npm install的时候出现npm ERR! Unexpected end of JSON input while parsing near等等提示，开始用了网上给出了清理cache等方法，比如<a href="https://www.cnblogs.com/gitnull/p/10193382.html" target="_blank" rel="noopener">https://www.cnblogs.com/gitnull/p/10193382.html</a> 给出的，试了挺久发现对我的问题不适用，没解决，在卸掉npm重装之后还是出现这种问题，最后我换了个思路，把配置npm的全局模块的存放路径以及cache的路径给换掉之后解决了此问题，具体是什么原因导致这种问题的我也比较模糊，魔性问题，下面给出我的解决方案。</p>
 <h1 id="配置npm的全局模块的存放路径以及cache的路径"><a href="#配置npm的全局模块的存放路径以及cache的路径" class="headerlink" title="配置npm的全局模块的存放路径以及cache的路径"></a>配置npm的全局模块的存放路径以及cache的路径</h1><p>在cmd中输入</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">npm config set prefix &quot;a:/nodejs/node_global&quot;</span><br><span class="line">npm config set cache &quot;a:/nodejs/nodejs/node_cache&quot;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">npm config set prefix &quot;a:/nodejs/node_global&quot;</span><br><span class="line">npm config set cache &quot;a:/nodejs/node_cache&quot;</span><br></pre></td></tr></table></figure>
 <p>tip:如果出现命令找不到的提示说明没加入到环境变量中，把npm安装的目录放到PATH环境中（WINDOWS下）</p>
 <p>上面俩个命令执行成功会在nodejs文件夹中创建两个文件夹，”node_global”及”node_cache” ，这个nodejs文件夹不是固定的，随你自己设定一个目录，路径填正确了，执行之后如下图所示：</p>
 <div align="center"><img src="/article_img/npm_error-1.png" alt="&quot;npm_error-1&quot;"></div>
@@ -440,7 +440,7 @@
         <p><span>本文标题:</span><a href="/2019/06-29-npm-error-resolve.html">npm ERR! Unexpected end of JSON input while parsing near和npm ERR! code EINTEGRITY</a></p>
         <p><span>文章作者:</span><a href="/" title="回到主页">梦在远方</a></p>
         <p><span>发布时间:</span>2019-06-29, 10:57:19</p>
-        <p><span>最后更新:</span>2019-06-29, 11:24:01</p>
+        <p><span>最后更新:</span>2019-08-12, 11:38:12</p>
         <p>
             <span>原始链接:</span><a class="post-url" href="/2019/06-29-npm-error-resolve.html" title="npm ERR! Unexpected end of JSON input while parsing near和npm ERR! code EINTEGRITY">www.cesarz.com.cn/2019/06-29-npm-error-resolve.html</a>
             <span class="copy-path" data-clipboard-text="原文: www.cesarz.com.cn/2019/06-29-npm-error-resolve.html　　作者: 梦在远方" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
