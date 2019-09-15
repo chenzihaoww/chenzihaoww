@@ -5,5 +5,5 @@ Disallow: /img/
 Disallow: /article_img/
 Disallow: /js/
 Disallow: /background/
-Sitemap: cesarz.com.cn/sitemap.xml
-Sitemap: cesarz.com.cn/baidusitemap.xml
+Sitemap: www.cesarz.com.cn/sitemap.xml
+Sitemap: www.cesarz.com.cn/baidusitemap.xml
