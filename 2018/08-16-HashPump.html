@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
-<head>
+<head><meta name="generator" content="Hexo 3.9.0">
 
     <!--[if lt IE 9]>
         <style>body {display: none; background: none !important} </style>
@@ -8,10 +8,10 @@
     <![endif]-->
 
 <meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<meta name="format-detection" content="telephone=no" />
-<meta name="author" content="梦在远方" />
+<meta name="format-detection" content="telephone=no">
+<meta name="author" content="梦在远方">
 
 
 <meta name="description" content="HashPump用户手册">
@@ -27,7 +27,7 @@
 <meta name="twitter:title" content="HashPump用户手册">
 <meta name="twitter:description" content="HashPump用户手册">
 
-<link rel="apple-touch-icon" href= "/apple-touch-icon.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
 
 
     <link rel="alternate" href="/atom.xml" title="梦在远方" type="application/atom+xml">
@@ -114,7 +114,7 @@
     </script>
 
 </head>
-
+</html>
 
 <script src="//cesarz.com.cn/js/playtour.js"></script>
 <script>
@@ -412,11 +412,15 @@
           
         <h1 id="HashPump"><a href="#HashPump" class="headerlink" title="HashPump"></a>HashPump</h1><p>在各种散列算法中利用散列长度扩展攻击的工具。<br>目前支持的算法：MD5、SHA1、SHA256、SHA512。</p>
 <h2 id="Help-Menu"><a href="#Help-Menu" class="headerlink" title="Help Menu"></a>Help Menu</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">$ hashpump -h</span><br><span class="line">HashPump [-h <span class="built_in">help</span>] [-t <span class="built_in">test</span>] [-s signature] [-d data] [-a additional] [-k keylength]</span><br><span class="line">    HashPump generates strings to exploit signatures vulnerable to the Hash Length Extension Attack.</span><br><span class="line">    -h --<span class="built_in">help</span>          Display this message.</span><br><span class="line">    -t --<span class="built_in">test</span>          Run tests to verify each algorithm is operating properly.</span><br><span class="line">    -s --signature     The signature from known message.</span><br><span class="line">    -d --data          The data from the known message.</span><br><span class="line">    -a --additional    The information you would like to add to the known message.</span><br><span class="line">    -k --keylength     The length <span class="keyword">in</span> bytes of the key being used to sign the original message with.</span><br><span class="line">    Version 1.2.0 with CRC32, MD5, SHA1, SHA256 and SHA512 support.</span><br><span class="line">    &lt;Developed by bwall(@botnet_hunter)&gt;</span><br></pre></td></tr></table></figure>
+
 <h2 id="Sample-Output"><a href="#Sample-Output" class="headerlink" title="Sample Output"></a>Sample Output</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ hashpump -s <span class="string">'6d5f807e23db210bc254a28be2d6759a0f5f5d99'</span> --data <span class="string">'count=10&amp;lat=37.351&amp;user_id=1&amp;long=-119.827&amp;waffle=eggo'</span> -a <span class="string">'&amp;waffle=liege'</span> -k 14</span><br><span class="line">0e41270260895979317fff3898ab85668953aaa2</span><br><span class="line">count=10&amp;lat=37.351&amp;user_id=1&amp;long=-119.827&amp;waffle=eggo\x80\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x02(&amp;waffle=liege</span><br></pre></td></tr></table></figure>
+
 <h2 id="Compile-amp-install"><a href="#Compile-amp-install" class="headerlink" title="Compile &amp; install"></a>Compile &amp; install</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ git <span class="built_in">clone</span> https://github.com/bwall/HashPump.git</span><br><span class="line">$ apt-get install g++ libssl-dev</span><br><span class="line">$ <span class="built_in">cd</span> HashPump</span><br><span class="line">$ make</span><br><span class="line">$ make install</span><br></pre></td></tr></table></figure>
+
 <p><code>apt-get</code> and <code>make install</code> require root privileges to run correctly.  The actual requirement is for <code>-lcrypto</code>, so depending on your operating system, your dependencies may vary.</p>
 <p>On OS X HashPump can also be installed using <a href="http://brew.sh/" target="_blank" rel="noopener">Homebrew</a>:</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ brew install hashpump</span><br></pre></td></tr></table></figure>
+
 <h2 id="Mentions"><a href="#Mentions" class="headerlink" title="Mentions"></a>Mentions</h2><p>HashPump has been mentioned in a few write-ups.  If you are wondering how you can use HashPump, these are some great examples.</p>
 <ul>
 <li><a href="http://ctfcrew.org/writeup/54" target="_blank" rel="noopener">http://ctfcrew.org/writeup/54</a></li>
@@ -444,8 +448,7 @@ hashpump(...)
     Returns:
         A tuple containing the new hex digest and the new message.
 &gt;&gt;&gt; hashpumpy.hashpump(&apos;ffffffff&apos;, &apos;original_data&apos;, &apos;data_to_add&apos;, len(&apos;KEYKEYKEY&apos;))
-(&apos;e3c4a05f&apos;, &apos;original_datadata_to_add&apos;)
-</code></pre><h3 id="Python-3-note"><a href="#Python-3-note" class="headerlink" title="Python 3 note"></a>Python 3 note</h3><p>hashpumpy supports Python 3. Different from the Python 2 version, the second value (the new message) in the returned tuple from <code>hashpumpy.hashpump</code> is a bytes-like object instead of a string.</p>
+(&apos;e3c4a05f&apos;, &apos;original_datadata_to_add&apos;)</code></pre><h3 id="Python-3-note"><a href="#Python-3-note" class="headerlink" title="Python 3 note"></a>Python 3 note</h3><p>hashpumpy supports Python 3. Different from the Python 2 version, the second value (the new message) in the returned tuple from <code>hashpumpy.hashpump</code> is a bytes-like object instead of a string.</p>
 
       
     </div>

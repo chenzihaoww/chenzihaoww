@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
-<head>
+<head><meta name="generator" content="Hexo 3.9.0">
 
     <!--[if lt IE 9]>
         <style>body {display: none; background: none !important} </style>
@@ -8,10 +8,10 @@
     <![endif]-->
 
 <meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<meta name="format-detection" content="telephone=no" />
-<meta name="author" content="梦在远方" />
+<meta name="format-detection" content="telephone=no">
+<meta name="author" content="梦在远方">
 
 
 <meta name="description" content="npm ERR! Unexpected end of JSON input while parsing near和npm ERR! code EINTEGRITY解决方案">
@@ -22,14 +22,12 @@
 <meta property="og:site_name" content="梦在远方">
 <meta property="og:description" content="npm ERR! Unexpected end of JSON input while parsing near和npm ERR! code EINTEGRITY解决方案">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="/article_img/npm_error-1.png">
 <meta property="og:updated_time" content="2019-08-12T03:38:12.735Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="npm ERR! Unexpected end of JSON input while parsing near和npm ERR! code EINTEGRITY">
 <meta name="twitter:description" content="npm ERR! Unexpected end of JSON input while parsing near和npm ERR! code EINTEGRITY解决方案">
-<meta name="twitter:image" content="/article_img/npm_error-1.png">
 
-<link rel="apple-touch-icon" href= "/apple-touch-icon.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
 
 
     <link rel="alternate" href="/atom.xml" title="梦在远方" type="application/atom+xml">
@@ -116,7 +114,7 @@
     </script>
 
 </head>
-
+</html>
 
 <script src="//cesarz.com.cn/js/playtour.js"></script>
 <script>
@@ -415,19 +413,25 @@
         <p>最近有一段时间没用npm再用的时候发现了不少错误，在使用npm install的时候出现npm ERR! Unexpected end of JSON input while parsing near等等提示，开始用了网上给出了清理cache等方法，比如<a href="https://www.cnblogs.com/gitnull/p/10193382.html" target="_blank" rel="noopener">https://www.cnblogs.com/gitnull/p/10193382.html</a> 给出的，试了挺久发现对我的问题不适用，没解决，在卸掉npm重装之后还是出现这种问题，最后我换了个思路，把配置npm的全局模块的存放路径以及cache的路径给换掉之后解决了此问题，具体是什么原因导致这种问题的我也比较模糊，魔性问题，下面给出我的解决方案。</p>
 <h1 id="配置npm的全局模块的存放路径以及cache的路径"><a href="#配置npm的全局模块的存放路径以及cache的路径" class="headerlink" title="配置npm的全局模块的存放路径以及cache的路径"></a>配置npm的全局模块的存放路径以及cache的路径</h1><p>在cmd中输入</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">npm config set prefix &quot;a:/nodejs/node_global&quot;</span><br><span class="line">npm config set cache &quot;a:/nodejs/node_cache&quot;</span><br></pre></td></tr></table></figure>
+
 <p>tip:如果出现命令找不到的提示说明没加入到环境变量中，把npm安装的目录放到PATH环境中（WINDOWS下）</p>
 <p>上面俩个命令执行成功会在nodejs文件夹中创建两个文件夹，”node_global”及”node_cache” ，这个nodejs文件夹不是固定的，随你自己设定一个目录，路径填正确了，执行之后如下图所示：</p>
-<div align="center"><img src="/article_img/npm_error-1.png" alt="&quot;npm_error-1&quot;"></div>
+<div align="center">!["npm_error-1"](/article_img/npm_error-1.png)</div>
 
 <p>接下来就是正常的npm的安装操作了</p>
 <h1 id="设置淘宝镜像"><a href="#设置淘宝镜像" class="headerlink" title="设置淘宝镜像"></a>设置淘宝镜像</h1><p>我自己用的就是这个镜像</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm config set registry http://registry.cnpmjs.org</span><br></pre></td></tr></table></figure>
+
 <h1 id="安装测试一下"><a href="#安装测试一下" class="headerlink" title="安装测试一下"></a>安装测试一下</h1><p>顺便安装个镜像管理工具，方便之后镜像源更改</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g nrm</span><br></pre></td></tr></table></figure>
+
 <p>这一步没有出现问题的话就相当于解决了</p>
 <h2 id="展开镜像源"><a href="#展开镜像源" class="headerlink" title="展开镜像源"></a>展开镜像源</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nrm ls</span><br></pre></td></tr></table></figure>
+
 <p>如果出现命令找不到，就把刚刚的a:/nodejs/node_global加到环境变量里面，具体看你自己设的目录</p>
-<p>成功会展示：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">C:\Users\Admin&gt;nrm ls</span><br><span class="line"></span><br><span class="line">  npm ---- https://registry.npmjs.org/</span><br><span class="line">  cnpm --- http://r.cnpmjs.org/</span><br><span class="line">  taobao - https://registry.npm.taobao.org/</span><br><span class="line">  nj ----- https://registry.nodejitsu.com/</span><br><span class="line">  npmMirror  https://skimdb.npmjs.com/registry/</span><br><span class="line">  edunpm - http://registry.enpmjs.org/</span><br></pre></td></tr></table></figure></p>
+<p>成功会展示：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">C:\Users\Admin&gt;nrm ls</span><br><span class="line"></span><br><span class="line">  npm ---- https://registry.npmjs.org/</span><br><span class="line">  cnpm --- http://r.cnpmjs.org/</span><br><span class="line">  taobao - https://registry.npm.taobao.org/</span><br><span class="line">  nj ----- https://registry.nodejitsu.com/</span><br><span class="line">  npmMirror  https://skimdb.npmjs.com/registry/</span><br><span class="line">  edunpm - http://registry.enpmjs.org/</span><br></pre></td></tr></table></figure>
+
 <p>之后可以利用nrm use 镜像名 设置镜像源</p>
 
       

@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
-<head>
+<head><meta name="generator" content="Hexo 3.9.0">
 
     <!--[if lt IE 9]>
         <style>body {display: none; background: none !important} </style>
@@ -8,10 +8,10 @@
     <![endif]-->
 
 <meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<meta name="format-detection" content="telephone=no" />
-<meta name="author" content="梦在远方" />
+<meta name="format-detection" content="telephone=no">
+<meta name="author" content="梦在远方">
 
 
 <meta name="description" content="创建存储过程take_course,根据参数学号和课程号，完成选课功能（要求能够根据选课人数加以限制）">
@@ -27,7 +27,7 @@
 <meta name="twitter:title" content="mysql存储过程使用案例">
 <meta name="twitter:description" content="创建存储过程take_course,根据参数学号和课程号，完成选课功能（要求能够根据选课人数加以限制）">
 
-<link rel="apple-touch-icon" href= "/apple-touch-icon.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
 
 
     <link rel="alternate" href="/atom.xml" title="梦在远方" type="application/atom+xml">
@@ -114,7 +114,7 @@
     </script>
 
 </head>
-
+</html>
 
 <script src="//cesarz.com.cn/js/playtour.js"></script>
 <script>
@@ -412,9 +412,13 @@
           
         <h2 id="要求"><a href="#要求" class="headerlink" title="要求"></a>要求</h2><p>    检查该学生选课门数是否超过3门，若超过，不插入记录；<br>    检查该课程选课人数是否已满（在course表里添加一个属性列，记录课程人数限制）；<br>    选课人数已满：不插入记录；<br>    选课人数未满且未插入过：完成数据插入操作；<br>    选课人数未满，已插入过：不插入记录<br>    最后返回执行结果信息，例如：<br>    超过3门，返回-1；<br>    选课人数已满。返回0；<br>    选课人数未满且未插入过：返回1；<br>    选课人数未满已插入过：返回2</p>
 <h2 id="实现过程"><a href="#实现过程" class="headerlink" title="实现过程"></a>实现过程</h2><h3 id="在course表里添加一个属性列，记录课程人数限制"><a href="#在course表里添加一个属性列，记录课程人数限制" class="headerlink" title="在course表里添加一个属性列，记录课程人数限制"></a>在course表里添加一个属性列，记录课程人数限制</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">alter table course</span><br><span class="line">add column n_limit int;</span><br><span class="line">update course</span><br><span class="line"><span class="built_in">set</span> n_limit=3;</span><br></pre></td></tr></table></figure>
+
 <h3 id="创建存储存储过程take-course"><a href="#创建存储存储过程take-course" class="headerlink" title="创建存储存储过程take_course"></a>创建存储存储过程take_course</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$mysql</span>中变量不用事前申明，在用的时候直接用“@变量名”使用就可以了</span><br><span class="line">DELIMITER // 的作用：改变sql的执行，默认是到分号;执行，改为到//执行，新版的mysql中创建存储过程容易出现提前执行的错误.</span><br></pre></td></tr></table></figure>
+
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">DELIMITER //</span><br><span class="line">DROP procedure IF EXISTS take_course;</span><br><span class="line">create procedure take_course(<span class="keyword">in</span> s_no varchar(100),<span class="keyword">in</span> c_no varchar(100),out result int)</span><br><span class="line">begin</span><br><span class="line"><span class="built_in">set</span> @result=1, @n_count=0,@c_count=0;</span><br><span class="line">select count(*) into @n_count from sc</span><br><span class="line"><span class="built_in">where</span> s_no=sno;</span><br><span class="line">select count(*) into @c_count from sc</span><br><span class="line"><span class="built_in">where</span> c_no=cno;</span><br><span class="line"><span class="keyword">if</span> @n_count&gt;=3 <span class="keyword">then</span></span><br><span class="line">truetrue<span class="built_in">set</span> @result=-1;</span><br><span class="line"><span class="keyword">else</span> <span class="keyword">if</span> @c_count&lt;3 and not exists(select * from sc <span class="built_in">where</span> s_no=sno and c_no=cno)</span><br><span class="line">truetruetrue<span class="keyword">then</span> insert into sc(sno,cno)values(s_no,c_no);</span><br><span class="line">truetruetrue<span class="built_in">set</span> @result=1;</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">truetruetrue<span class="keyword">if</span> @c_count&lt;3 and exists(select * from sc <span class="built_in">where</span> s_no=sno and c_no=cno)</span><br><span class="line">truetruetrue<span class="keyword">then</span> <span class="built_in">set</span> @result=2;</span><br><span class="line">truetruetrue<span class="keyword">else</span>  <span class="built_in">set</span> @result=0;</span><br><span class="line">truetruetrueend <span class="keyword">if</span>;</span><br><span class="line">truetruetrueend <span class="keyword">if</span>;		</span><br><span class="line">end <span class="keyword">if</span>;</span><br><span class="line"><span class="built_in">set</span> result=@result;</span><br><span class="line">end//</span><br></pre></td></tr></table></figure>
+
 <h3 id="验证"><a href="#验证" class="headerlink" title="验证"></a>验证</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">如下列方式：</span><br><span class="line">call take_course(&apos;9521101&apos;,&apos;C04&apos;,@result);</span><br><span class="line">select @result;</span><br></pre></td></tr></table></figure>
+
 
       
     </div>

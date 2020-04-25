@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
-<head>
+<head><meta name="generator" content="Hexo 3.9.0">
 
     <!--[if lt IE 9]>
         <style>body {display: none; background: none !important} </style>
@@ -8,10 +8,10 @@
     <![endif]-->
 
 <meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<meta name="format-detection" content="telephone=no" />
-<meta name="author" content="梦在远方" />
+<meta name="format-detection" content="telephone=no">
+<meta name="author" content="梦在远方">
 
 
 <meta name="description" content="CTF常用python脚本">
@@ -27,7 +27,7 @@
 <meta name="twitter:title" content="CTF常用python脚本">
 <meta name="twitter:description" content="CTF常用python脚本">
 
-<link rel="apple-touch-icon" href= "/apple-touch-icon.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
 
 
     <link rel="alternate" href="/atom.xml" title="梦在远方" type="application/atom+xml">
@@ -114,7 +114,7 @@
     </script>
 
 </head>
-
+</html>
 
 <script src="//cesarz.com.cn/js/playtour.js"></script>
 <script>
@@ -411,7 +411,9 @@
       
           
         <h1 id="加解密脚本"><a href="#加解密脚本" class="headerlink" title="加解密脚本"></a>加解密脚本</h1><h2 id="n次base64解密"><a href="#n次base64解密" class="headerlink" title="n次base64解密"></a>n次base64解密</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">import base64</span><br><span class="line">    a = open(<span class="string">'1.txt'</span>)</span><br><span class="line">    try:</span><br><span class="line">        b = a.read()</span><br><span class="line">    finally:</span><br><span class="line">        a.close()</span><br><span class="line">    <span class="keyword">while</span> True:</span><br><span class="line">        try:</span><br><span class="line">            b = base64.b64decode(b)</span><br><span class="line">        except:</span><br><span class="line">            <span class="built_in">print</span>(b)</span><br><span class="line">            <span class="built_in">break</span></span><br></pre></td></tr></table></figure>
+
 <h2 id="RC4解密算法"><a href="#RC4解密算法" class="headerlink" title="RC4解密算法"></a>RC4解密算法</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">import random, base64</span><br><span class="line">from hashlib import sha1</span><br><span class="line">def crypt(data, key):</span><br><span class="line">   x = 0</span><br><span class="line">   box = range(256)</span><br><span class="line">   <span class="keyword">for</span> i <span class="keyword">in</span> range(256):</span><br><span class="line">       x = (x + box[i] + ord(key[i % len(key)])) % 256</span><br><span class="line">       box[i], box[x] = box[x], box[i]</span><br><span class="line">   x = y = 0</span><br><span class="line">   out = []</span><br><span class="line">   <span class="keyword">for</span> char <span class="keyword">in</span> data:</span><br><span class="line">       x = (x + 1) % 256</span><br><span class="line">       y = (y + box[x]) % 256</span><br><span class="line">       box[x], box[y] = box[y], box[x]</span><br><span class="line">       out.append(chr(ord(char) ^ box[(box[x] + box[y]) % 256]))</span><br><span class="line">   <span class="built_in">return</span> <span class="string">''</span>.join(out)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">def tdecode(data, key, decode=base64.b64decode, salt_length=16):</span><br><span class="line">   <span class="keyword">if</span> decode:</span><br><span class="line">       data = decode(data)</span><br><span class="line">   salt = data[:salt_length]</span><br><span class="line">   <span class="built_in">return</span> crypt(data[salt_length:], sha1(key + salt).digest())</span><br><span class="line"><span class="keyword">if</span> __name__ ==<span class="string">'__main__'</span>:</span><br><span class="line">   data = <span class="string">'UUyFTj8PCzF6geFn6xgBOYSvVTrbpNU4OF9db9wMcPD1yDbaJw =='</span></span><br><span class="line">   key = <span class="string">'welcometoicqedu'</span></span><br><span class="line">   decoded_data = tdecode(data=data, key=key)</span><br><span class="line">   <span class="built_in">print</span> decoded_data</span><br></pre></td></tr></table></figure>
+
 
       
     </div>

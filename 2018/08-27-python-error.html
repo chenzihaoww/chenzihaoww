@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
-<head>
+<head><meta name="generator" content="Hexo 3.9.0">
 
     <!--[if lt IE 9]>
         <style>body {display: none; background: none !important} </style>
@@ -8,10 +8,10 @@
     <![endif]-->
 
 <meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<meta name="format-detection" content="telephone=no" />
-<meta name="author" content="梦在远方" />
+<meta name="format-detection" content="telephone=no">
+<meta name="author" content="梦在远方">
 
 
 <meta name="description" content="Python运行错误及解决方案汇总">
@@ -27,7 +27,7 @@
 <meta name="twitter:title" content="Python运行错误及解决方案汇总">
 <meta name="twitter:description" content="Python运行错误及解决方案汇总">
 
-<link rel="apple-touch-icon" href= "/apple-touch-icon.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
 
 
     <link rel="alternate" href="/atom.xml" title="梦在远方" type="application/atom+xml">
@@ -114,7 +114,7 @@
     </script>
 
 </head>
-
+</html>
 
 <script src="//cesarz.com.cn/js/playtour.js"></script>
 <script>
@@ -410,7 +410,9 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <h2 id="python2-7运行出现的Unicode-equal-comparison-failed-to-convert-both-arguments-to-Unicode-interpreting"><a href="#python2-7运行出现的Unicode-equal-comparison-failed-to-convert-both-arguments-to-Unicode-interpreting" class="headerlink" title="python2.7运行出现的Unicode equal comparison failed to convert both arguments to Unicode - interpreting"></a>python2.7运行出现的Unicode equal comparison failed to convert both arguments to Unicode - interpreting</h2><p>uncode编码警告：在unicode等价比较中，把两个参数同时转换为unicode编码失败。中断并认为他们不相等。<br>windows下的字符串str默认编码是ascii，而python编码是utf8<br>解决方法：添加如下几行代码<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">import sys</span><br><span class="line">reload(sys)</span><br><span class="line">sys.setdefaultencoding(<span class="string">'utf8'</span>)</span><br></pre></td></tr></table></figure></p>
+        <h2 id="python2-7运行出现的Unicode-equal-comparison-failed-to-convert-both-arguments-to-Unicode-interpreting"><a href="#python2-7运行出现的Unicode-equal-comparison-failed-to-convert-both-arguments-to-Unicode-interpreting" class="headerlink" title="python2.7运行出现的Unicode equal comparison failed to convert both arguments to Unicode - interpreting"></a>python2.7运行出现的Unicode equal comparison failed to convert both arguments to Unicode - interpreting</h2><p>uncode编码警告：在unicode等价比较中，把两个参数同时转换为unicode编码失败。中断并认为他们不相等。<br>windows下的字符串str默认编码是ascii，而python编码是utf8<br>解决方法：添加如下几行代码</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">import sys</span><br><span class="line">reload(sys)</span><br><span class="line">sys.setdefaultencoding(<span class="string">'utf8'</span>)</span><br></pre></td></tr></table></figure>
+
 
       
     </div>
