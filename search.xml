@@ -27,7 +27,7 @@
       <title>windows 安装 Atom 失败，出现update已停止工作</title>
       <link href="/2019/08-18-atom-error-resolve.html"/>
       <url>/2019/08-18-atom-error-resolve.html</url>
-      <content type="html"><![CDATA[<p>我是在最近重装系统后，安装atom时使用.exe安装失败，出现如下错误：</p><div align="center">!["atom-solution"](/article_img/atom-solution.png)</div>最后通过换安装方式解决的：我使用的是atom-windows.zip安装包地址如下:https://github.com/atom/atom/releases/tag/v1.40.0]]></content>
+      <content type="html"><![CDATA[<p>我是在最近重装系统后，安装atom时使用.exe安装失败，出现如下错误:<br><img src="/article_img/atom-solution.png" alt="&quot;atom-solution&quot;"></p><p>最后通过换安装方式解决的：我使用的是atom-windows.zip<br>安装包地址如下:<br><a href="https://github.com/atom/atom/releases/tag/v1.40.0" target="_blank" rel="noopener">https://github.com/atom/atom/releases/tag/v1.40.0</a></p>]]></content>
       
       <categories>
           
