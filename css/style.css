@@ -2872,7 +2872,10 @@ pre .javascript .function {
   bottom: 0;
   left: 0;
   right: 0;
-  overflow: hidden;
+  height: 80%;
+  overflow: scroll;
+  background-color: rgba(0,0,0,0.8);
+  margin-top: 40px;
 }
 #viewer-box {
   display: -webkit-box;
@@ -2890,7 +2893,7 @@ pre .javascript .function {
 }
 #viewer-box .viewer-box-l {
   background: rgba(20,20,20,0.9);
-  width: 80%;
+  width: 100%;
   height: auto;
   -webkit-box-flex: 0;
   -moz-box-flex: 0;
