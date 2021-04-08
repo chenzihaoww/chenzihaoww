@@ -3,6 +3,21 @@
   
     
     <entry>
+      <title>电脑开机显示找不到grub引导（win10系统）</title>
+      <link href="/2021/04-08-windows1-error-resolve.html"/>
+      <url>/2021/04-08-windows1-error-resolve.html</url>
+      <content type="html"><![CDATA[<p>安装双系统windows和ubuntu后，默认引导是Ubuntu的界面，在删除掉ubuntu系统后会导致找不到grub引导。<br>显示:<br>error: no such device<br>grub rescue&gt;<br>可以用u盘制作一个win10的系统启动盘,然后按下列步骤解决，亲测成功（最坏的解决办法是重装系统）。<br>步骤如下：<br>1.进到u盘的系统安装界面<br>2.选定原来的windows系统所在磁盘，按住shift+F10，调出cmd<br>3.依次键入bootrec /fixmbr 回车；bootrec /fixboot 回车；（命令将尝试修复主引导记录的损坏问题）<br>4.重启</p>]]></content>
+      
+      
+        <tags>
+            
+            <tag> windows </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    <entry>
       <title>Python常用库</title>
       <link href="/2020/04-11-python-packages.html"/>
       <url>/2020/04-11-python-packages.html</url>
