@@ -31,7 +31,7 @@
       
       <categories>
           
-          <category> 程序设计 </category>
+          <category> Programming </category>
           
       </categories>
       
@@ -136,7 +136,7 @@
       
       <categories>
           
-          <category> 程序设计 </category>
+          <category> problem-solution </category>
           
       </categories>
       
@@ -157,7 +157,7 @@
       
       <categories>
           
-          <category> 程序设计 </category>
+          <category> Programming </category>
           
       </categories>
       
@@ -199,14 +199,14 @@
       
       <categories>
           
-          <category> 程序设计 </category>
+          <category> Programming </category>
           
       </categories>
       
       
         <tags>
             
-            <tag> c language programming </tag>
+            <tag> c language </tag>
             
         </tags>
       
@@ -319,7 +319,7 @@
       
       <categories>
           
-          <category> CTF </category>
+          <category> Programming </category>
           
       </categories>
       
@@ -327,6 +327,8 @@
         <tags>
             
             <tag> python </tag>
+            
+            <tag> CTF </tag>
             
         </tags>
       
@@ -340,14 +342,14 @@
       
       <categories>
           
-          <category> CTF </category>
+          <category> Document </category>
           
       </categories>
       
       
         <tags>
             
-            <tag> CTF在线工具集 </tag>
+            <tag> CTF </tag>
             
         </tags>
       
@@ -508,7 +510,7 @@
       
       <categories>
           
-          <category> 程序设计 </category>
+          <category> Programming </category>
           
       </categories>
       
@@ -529,7 +531,7 @@
       
       <categories>
           
-          <category> 程序设计 </category>
+          <category> Programming </category>
           
       </categories>
       
@@ -550,14 +552,14 @@
       
       <categories>
           
-          <category> 程序设计 </category>
+          <category> Programming </category>
           
       </categories>
       
       
         <tags>
             
-            <tag> c语言 </tag>
+            <tag> c language </tag>
             
         </tags>
       
