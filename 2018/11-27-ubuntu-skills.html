@@ -22,7 +22,7 @@
 <meta property="og:site_name" content="未来可期">
 <meta property="og:description" content="双系统在开机选项时设定为上一次选择的系统，linux下锐捷客户端相关命令设定">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-11-27T13:53:23.962Z">
+<meta property="og:updated_time" content="2021-04-10T14:13:16.742Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="ubuntu下技巧总结">
 <meta name="twitter:description" content="双系统在开机选项时设定为上一次选择的系统，linux下锐捷客户端相关命令设定">
@@ -463,7 +463,7 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <h1 id="双系统在开机选项时设定为上一次选择的系统"><a href="#双系统在开机选项时设定为上一次选择的系统" class="headerlink" title="双系统在开机选项时设定为上一次选择的系统"></a>双系统在开机选项时设定为上一次选择的系统</h1><p>sudo gedit /etc/default/grub<br>添加 GRUB_SAVEDEFAULT=true 字段（保存上一次启动项）<br>修改GRUB_DEFAULT=0为GRUB_DEFAULT=saved（设置默认启动项为保存的上一次启动项）<br>sudo update-grub</p>
+        <h1 id="双系统在开机选项时设定为上一次选择的系统"><a href="#双系统在开机选项时设定为上一次选择的系统" class="headerlink" title="双系统在开机选项时设定为上一次选择的系统"></a>双系统在开机选项时设定为上一次选择的系统</h1><p>1.在终端内输入sudo gedit /etc/default/grub<br>2.添加 GRUB_SAVEDEFAULT=true 字段（保存上一次启动项）<br>3.修改GRUB_DEFAULT=0为GRUB_DEFAULT=saved（设置默认启动项为保存的上一次启动项）<br>4.sudo update-grub</p>
 <h1 id="linux下锐捷客户端相关命令设定"><a href="#linux下锐捷客户端相关命令设定" class="headerlink" title="linux下锐捷客户端相关命令设定"></a>linux下锐捷客户端相关命令设定</h1><p>锐捷安装包地址：<a href="https://pan.lanzou.com/i0uanwf" target="_blank" rel="noopener">https://pan.lanzou.com/i0uanwf</a><br>解压后，执行.sh文件<br>sudo ./rjsupplicant.sh –help查看帮助（readme有结构说明）<br>sudo ./rjsupplicant.sh -s 联通|移动|电信 -u 用户名 -p 密码 -d 0<br>登陆后，network-manager自动关闭<br>利用：sudo service network-manager start重新开启<br>设定DNS:sudo vim /etc/resolve.conf</p>
 
       
@@ -476,7 +476,7 @@
         <p><span>本文标题:</span><a href="/2018/11-27-ubuntu-skills.html">ubuntu下技巧总结</a></p>
         <p><span>文章作者:</span><a href="/" title="回到主页">cesarz</a></p>
         <p><span>发布时间:</span>2018-11-27, 21:46:16</p>
-        <p><span>最后更新:</span>2018-11-27, 21:53:23</p>
+        <p><span>最后更新:</span>2021-04-10, 22:13:16</p>
         <p>
             <span>原始链接:</span><a class="post-url" href="/2018/11-27-ubuntu-skills.html" title="ubuntu下技巧总结">www.cesarz.com.cn/2018/11-27-ubuntu-skills.html</a>
             <span class="copy-path" data-clipboard-text="原文: www.cesarz.com.cn/2018/11-27-ubuntu-skills.html　　作者: cesarz" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>

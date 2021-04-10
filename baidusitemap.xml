@@ -4,6 +4,46 @@
 
     
   <url>
+    <loc>www.cesarz.com.cn/2018/08-15-Linux.html</loc>
+    <lastmod>2021-04-10T14:21:07.165Z</lastmod>
+    <data>
+        <display>
+        <title>Linux基础</title>
+        <pubTime>2018-08-15T00:57:18.000Z</pubTime>
+        
+        <tag>Linux</tag>
+         
+         
+           
+             
+              <breadCrumb title="Document" url="www.cesarz.com.cn/categories/Document/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>www.cesarz.com.cn/2018/11-27-ubuntu-skills.html</loc>
+    <lastmod>2021-04-10T14:13:16.742Z</lastmod>
+    <data>
+        <display>
+        <title>ubuntu下技巧总结</title>
+        <pubTime>2018-11-27T13:46:16.000Z</pubTime>
+        
+        <tag>ubuntu</tag>
+         
+         
+           
+             
+              <breadCrumb title="Linux" url="www.cesarz.com.cn/categories/Linux/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>www.cesarz.com.cn/2018/09-03-xinsheng.html</loc>
     <lastmod>2021-04-10T13:33:29.835Z</lastmod>
     <data>
@@ -40,26 +80,6 @@
     </url>
 
     
-    
-  <url>
-    <loc>www.cesarz.com.cn/2018/08-15-Linux.html</loc>
-    <lastmod>2021-04-09T13:46:41.591Z</lastmod>
-    <data>
-        <display>
-        <title>Linux基础</title>
-        <pubTime>2018-08-15T00:57:18.000Z</pubTime>
-        
-        <tag>Linux</tag>
-         
-         
-           
-             
-              <breadCrumb title="Document" url="www.cesarz.com.cn/categories/Document/"/>
-          
-        </display>
-    </data>
-    </url>
-
     
   <url>
     <loc>www.cesarz.com.cn/2018/05-20-HEXO-ALL.html</loc>
@@ -439,26 +459,6 @@
            
              
               <breadCrumb title="Document" url="www.cesarz.com.cn/categories/Document/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>www.cesarz.com.cn/2018/11-27-ubuntu-skills.html</loc>
-    <lastmod>2018-11-27T13:53:23.962Z</lastmod>
-    <data>
-        <display>
-        <title>ubuntu下技巧总结</title>
-        <pubTime>2018-11-27T13:46:16.000Z</pubTime>
-        
-        <tag>ubuntu</tag>
-         
-         
-           
-             
-              <breadCrumb title="Linux" url="www.cesarz.com.cn/categories/Linux/"/>
           
         </display>
     </data>
