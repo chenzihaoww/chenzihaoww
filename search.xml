@@ -3,6 +3,27 @@
   
     
     <entry>
+      <title>华为路由器ws5200四核版经常断网</title>
+      <link href="/2021/04-25-problem-solve.html"/>
+      <url>/2021/04-25-problem-solve.html</url>
+      <content type="html"><![CDATA[<p>总的来说这款路由器还不错，但是一直遇到突然断网的情况，之前没太在意，但是今年4月初我研究生网上复试的时候，最后几分钟竟然断网了，差点当场去世…，虽然最后成功上岸了。</p><p>后来我仔细回想了下，因为我们是双机位，主机位用的电脑，联想拯救者Y7000,断网的就是这个，辅机位用的是刚买的荣耀轻奢版v30（支持5G的），这部手机使用网络的时候一直都是好好的，没出现过断网情况。我平时用的是华为p20（4G不支持5G），也经常出现断网情况。</p><p>考虑是不是信号切换的问题，然后就试了下。<strong>从“智慧生活”里进入路由器的设置，进入Wi-Fi管理-&gt;Wi-Fi设置，将5G优选关闭，底下的5G Wi-Fi也关闭，最后只使用2.4G Wi-Fi。</strong>用了一段时间发现没有再出现断网问题。当然，如果手机支持5G的话是可以打开5G优选的，我用支持5G手机的时候没有出现断网问题，不支持5G直接关闭。</p>]]></content>
+      
+      <categories>
+          
+          <category> problem-solution </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> life </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    <entry>
       <title>numpy、pandas、matplotlib总结</title>
       <link href="/2021/04-21-python-lib.html"/>
       <url>/2021/04-21-python-lib.html</url>
